@@ -17,7 +17,7 @@ Since that node_modules folder was gitignored, these dependencies are not pushed
 npm install axios
 npm install react-scripts
 npm install semantic-ui-react semantic-ui-css
-npm i --save @fortawesome/fontawesome-svg-core
+npm install --save @fortawesome/fontawesome-svg-core
 npm install --save @fortawesome/free-solid-svg-icons
 npm install --save @fortawesome/free-regular-svg-icons
 npm install --save @fortawesome/free-brands-svg-icons
