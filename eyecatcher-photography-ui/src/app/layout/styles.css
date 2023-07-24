@@ -1,3 +1,12 @@
+@font-face {
+	font-family: "Product Sans";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Open Sans"), local("OpenSans"),
+		url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2)
+			format("woff2");
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +19,231 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+/*--------------------- NAVBAR STYLING ----------------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Product Sans';
+}
+
+body {
+  font-family: 'Product Sans';
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+/* NAVBAR STYLING STARTS */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 9% 20px 9%;
+  background-color: black;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.right-nav {
+  display: flex;
+}
+
+.nav-links a {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* LOGO */
+.logo-image {
+  max-width: 60px;
+}
+.logo {
+  display: flex;
+}
+
+/* NAVBAR MENU */
+.menu {
+  display: flex;
+  gap: 1em;
+  font-size: 15px;
+}
+
+.menu li:hover {
+  background-color: #4c9e9e;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+.menu li {
+  padding: 5px 14px;
+}
+
+
+
+/* DROPDOWN MENU */
+.dropdown {
+  background-color: rgb(1, 139, 139);
+  padding: 1em 0;
+  position: absolute; /*WITH RESPECT TO PARENT*/
+  display: none;
+  border-radius: 8px;
+  top: 35px;
+}
+
+.dropdown li + li {
+  margin-top: 10px;
+}
+
+.dropdown li {
+  padding: 0.5em 1em;
+  width: 8em;
+  text-align: center;
+}
+
+.dropdown li:hover {
+  background-color: #4c9e9e;
+}
+.services:hover .dropdown {
+  display: block;
+}
+
+
+/* RESPONSIVE NAVBAR MENU STARTS */
+
+/* CHECKBOX HACK */
+
+input[type=checkbox] {
+  display: none;
+} 
+
+/* HAMBURGER MENU */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  user-select: none;
+}
+
+.login-buttons {
+  display: flex;
+}
+
+.user-picture-div {
+  position: relative;
+}
+
+.user-picture {
+  padding: 3px 10px 3px 10px; 
+  font-size: 32px;
+}
+
+.user-picture:hover {
+  cursor: pointer;
+}
+
+.user-picture-dropdown {
+  display: none;
+  position: absolute;
+  left: -55px;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  color: black;
+  width: 170px;
+}
+
+.user-dropdown-arrow {
+  transform: rotate(270deg);
+  position: absolute;
+  top: -15px;
+  left: 74px;
+}
+
+.user-close {
+  position: absolute;
+  right: 11px;
+  top: 5px;
+  font-size: 20px;
+}
+
+.login-buttons {
+  display: block;
+}
+
+@media (min-width: 768px){
+  .menu {
+      display: flex !important;
+      gap: 1em;
+      font-size: 15px;
+    }
+  .menu li {
+      padding: 5px 14px;
+    }
+  .login-buttons-mobile {
+    display: none;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 14px 4% 14px 4%;
+  }
+ .menu {
+    display:none;
+    position: absolute;
+    background-color:black;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: 16px 0;
+    margin-top: 30px;
+  }
+
+  .menu li:hover {
+    display: inline-block;
+    background-color:#4c9e9e;
+    transition: 0.3s ease;
+  }
+
+  .menu li + li {
+    margin-top: 12px;
+  }
+
+  input[type=checkbox]:checked ~ .menu {
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .dropdown {
+    left: 50%;
+    top: 30px;
+    transform: translateX(35%);
+  }
+
+  .dropdown li:hover {
+    background-color: #4c9e9e;
+  }
+
+  .user-picture-dropdown {
+    left: -80px;
+  }
+
+  .user-dropdown-arrow {
+    top: -15px;
+    left: 99px;
+  }
 }
