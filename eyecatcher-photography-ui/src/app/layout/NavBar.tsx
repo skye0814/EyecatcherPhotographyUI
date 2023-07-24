@@ -5,7 +5,13 @@ export default function NavBar(){
     // User dropdown function
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     const toggleUserDropdown = () => {
-        setShowUserDropdown(!showUserDropdown);
+      setShowUserDropdown(!showUserDropdown);
+    };
+    // Mobile nav menu function
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const toggleMobileMenu = () => {
+      setShowMobileMenu(!showMobileMenu);
+      setShowUserDropdown(false);
     }
 
     return(
@@ -20,7 +26,7 @@ export default function NavBar(){
         </div>
         {/* NAVIGATION MENU */}
         <ul className="nav-links">
-          <div className="menu">
+          <div className="menu" style={{display: showMobileMenu ? 'block' : 'none'}}>
             <li>
               <a href="/">Services</a>
             </li>
@@ -44,7 +50,6 @@ export default function NavBar(){
               <div className="user-dropdown-arrow">
                 <FontAwesomeIcon icon="play" style={{color: "white"}}></FontAwesomeIcon>
               </div>
-              <FontAwesomeIcon className="user-close" icon="close"></FontAwesomeIcon>
               <div
                 style={{
                   textAlign: "justify",
@@ -62,7 +67,7 @@ export default function NavBar(){
             </div>)}
 
           </div>
-          <input type="checkbox" id="checkbox_toggle" />
+          <input type="checkbox" id="checkbox_toggle" onClick={toggleMobileMenu}/>
           <label
             htmlFor="checkbox_toggle"
             className="hamburger"

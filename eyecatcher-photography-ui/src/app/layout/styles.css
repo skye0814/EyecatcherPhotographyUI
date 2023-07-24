@@ -14,6 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f2f2f2;
 }
 
 code {
@@ -141,8 +142,8 @@ input[type=checkbox] {
 }
 
 .user-picture {
-  padding: 3px 10px 3px 10px; 
-  font-size: 32px;
+  padding: 10px 15px; 
+  font-size: 27px;
 }
 
 .user-picture:hover {
@@ -150,9 +151,10 @@ input[type=checkbox] {
 }
 
 .user-picture-dropdown {
-  display: none;
+  display: block;
   position: absolute;
-  left: -55px;
+  left: -57px;
+  top: 55px;
   background-color: white;
   box-sizing: border-box;
   padding: 20px;
@@ -165,8 +167,8 @@ input[type=checkbox] {
 .user-dropdown-arrow {
   transform: rotate(270deg);
   position: absolute;
-  top: -15px;
-  left: 74px;
+  top: -13px;
+  left: 79px;
 }
 
 .user-close {
@@ -239,11 +241,11 @@ input[type=checkbox] {
   }
 
   .user-picture-dropdown {
-    left: -80px;
+    left: -82px;
   }
 
   .user-dropdown-arrow {
-    top: -15px;
-    left: 99px;
+    top: -13px;
+    left: 104px;
   }
 }
