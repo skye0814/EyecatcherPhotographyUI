@@ -22,6 +22,10 @@ code {
     monospace;
 }
 
+.container {
+  padding-top: 100px;
+}
+
 
 /*--------------------- NAVBAR STYLING ----------------------------------------------*/
 * {

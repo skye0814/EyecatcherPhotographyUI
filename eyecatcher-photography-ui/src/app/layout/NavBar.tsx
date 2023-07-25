@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
  
 export default function NavBar(){
     // User dropdown function
@@ -33,17 +34,20 @@ export default function NavBar(){
         <nav className="navbar" id='navbar'>
         {/* LOGO */}
         <div className="logo">
-          <img className="logo-image" src='assets/images/logowhite.png' alt='logowhite' />
-          <span style={{ fontSize: 15 }}>
-            Eyecatcher
-            <br /> Photography
-          </span>
+          <Link to="/" style={{textDecoration: "none !important"}}>
+            <img className="logo-image" src='assets/images/logowhite.png' alt='logowhite' />
+            <span style={{ fontSize: 15 }}>
+              Eyecatcher
+              <br /> Photography
+            </span>
+          </Link>
         </div>
         {/* NAVIGATION MENU */}
         <ul className="nav-links">
           <div className="menu" style={{display: showMobileMenu ? 'block' : 'none'}}>
             <li>
-              <a href="/">Services</a>
+              {/* <a href="/">Services</a> */}
+              <Link to="services">Services</Link>
             </li>
             <li>
               <a href="/">Cart</a>
