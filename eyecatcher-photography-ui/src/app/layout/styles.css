@@ -33,6 +33,7 @@ code {
 
 body {
   font-family: 'Product Sans';
+  height: 2000px;
 }
 
 a {
@@ -52,6 +53,12 @@ li {
   background-color: black;
   color: #fff;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+  position: fixed;
+  top: 0;
+  transition: .3s;
+  z-index: 999;
+  width: 100%;
 }
 
 .right-nav {
@@ -87,8 +94,6 @@ li {
 .menu li {
   padding: 5px 14px;
 }
-
-
 
 /* DROPDOWN MENU */
 .dropdown {

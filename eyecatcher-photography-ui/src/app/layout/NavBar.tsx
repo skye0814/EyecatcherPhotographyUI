@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  
 export default function NavBar(){
@@ -14,8 +14,23 @@ export default function NavBar(){
       setShowUserDropdown(false);
     }
 
+    useEffect(() => {
+      // Logic for hiding nav when scroll down, showing nav when scroll up
+      let navBar = document.getElementById("navbar") as HTMLElement;
+      if (navBar){
+        let prevScrollPos = window.scrollY;
+        window.addEventListener('scroll', () => {
+          let currentScrollPos = window.scrollY;
+          prevScrollPos > currentScrollPos ? navBar.style.top = '0' : navBar.style.top = '-100px';
+          prevScrollPos = currentScrollPos;
+          setShowUserDropdown(false);
+          setShowMobileMenu(false);
+        });
+      }
+    },[]);
+
     return(
-        <nav className="navbar">
+        <nav className="navbar" id='navbar'>
         {/* LOGO */}
         <div className="logo">
           <img className="logo-image" src='assets/images/logowhite.png' alt='logowhite' />
