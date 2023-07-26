@@ -15,14 +15,15 @@ import {
   Router,
 } from "react-router-dom";
 import Services from './Services';
+import Home from './Home';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-        <div className='container'>
+        <div>
             <Routes>
-              <Route path="/" element='' />
+              <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
             </Routes>
         </div>

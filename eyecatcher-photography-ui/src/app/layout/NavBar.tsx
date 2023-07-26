@@ -22,7 +22,7 @@ export default function NavBar(){
         let prevScrollPos = window.scrollY;
         window.addEventListener('scroll', () => {
           let currentScrollPos = window.scrollY;
-          prevScrollPos > currentScrollPos ? navBar.style.top = '0' : navBar.style.top = '-100px';
+          prevScrollPos > currentScrollPos ? navBar.style.top = '0' : navBar.style.top = '-65px';
           prevScrollPos = currentScrollPos;
           setShowUserDropdown(false);
           setShowMobileMenu(false);
@@ -34,13 +34,11 @@ export default function NavBar(){
         <nav className="navbar" id='navbar'>
         {/* LOGO */}
         <div className="logo">
-          <Link to="/" style={{textDecoration: "none !important"}}>
             <img className="logo-image" src='assets/images/logowhite.png' alt='logowhite' />
             <span style={{ fontSize: 15 }}>
               Eyecatcher
               <br /> Photography
             </span>
-          </Link>
         </div>
         {/* NAVIGATION MENU */}
         <ul className="nav-links">
