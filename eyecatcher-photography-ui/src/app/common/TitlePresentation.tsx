@@ -1,6 +1,10 @@
 import React from "react";
 
-export default function TitlePresentation(){
+interface Props {
+    titleName: string
+}
+
+export default function TitlePresentation({titleName}: Props){
     return(
     <div className='title'>
         <span>Eyecatcher Photography</span>
@@ -9,7 +13,7 @@ export default function TitlePresentation(){
                 Presents
             <hr style={{width: '45%', color: 'red', height: '2px'}} />
         </span>
-        <span>Services</span>
+        <span>{titleName}</span>
     </div>
     );
 }
