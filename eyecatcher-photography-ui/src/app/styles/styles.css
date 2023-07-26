@@ -23,7 +23,13 @@ code {
 }
 
 .container {
-  padding-top: 100px;
+  margin: 115px 7%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 92px 7%;
+  }
 }
 
 
@@ -53,7 +59,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 9% 20px 9%;
+  padding: 20px 5.5% 20px 5.5%;
   background-color: black;
   color: #fff;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -142,6 +148,10 @@ input[type=checkbox] {
   user-select: none;
 }
 
+.hamburger:hover{
+  cursor: pointer;
+}
+
 .login-buttons {
   display: flex;
 }
@@ -208,7 +218,7 @@ input[type=checkbox] {
 /* Mobile view */
 @media (max-width: 768px) {
   .navbar {
-    padding: 14px 4% 14px 4%;
+    padding: 14px 3% 14px 3%;
   }
  .menu {
     display:none;
@@ -258,3 +268,51 @@ input[type=checkbox] {
     left: 104px;
   }
 }
+
+/*--------------------- NAVBAR STYLING ENDS ----------------------------------------------*/
+
+.title {
+  display: grid;
+  justify-content: center;
+}
+.title span{
+  margin: auto;
+}
+.title span:nth-child(1){
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: bolder;
+}
+.title span:nth-child(2){
+  display: flex;
+  width: 100%;
+  text-transform: lowercase;
+  font-size: 18px;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-weight: lighter;
+}
+.title span:nth-child(3){
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 18px;
+}
+.title span hr:nth-child(1){
+  width: 45%;
+  height: 1px;
+  border-color: black;
+  background-color: black;
+  margin-top: 11px;
+  margin-right: 10px;
+}
+.title span hr:nth-child(2){
+  width: 45%;
+  height: 1px;
+  border-color: black;
+  background-color: black;
+  margin-top: 11px;
+  margin-left: 10px;
+}
+
+
