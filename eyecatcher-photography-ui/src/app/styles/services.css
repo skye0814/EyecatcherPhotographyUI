@@ -1,4 +1,39 @@
 /* override container style from styles.css */
-.container {
+
+
+/* Colorize-zoom Container */
+.img-hover-zoom--colorize img {
+    transition: transform .5s, filter 0.7s ease-in-out;
+    filter: grayscale(100%);
+}
+  
+/* The Transformation */
+.img-hover-zoom--colorize:hover img {
+filter: grayscale(0);
+transform: scale(1.1);
 }
 
+.img-hover-zoom{
+    margin: 2em 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.img-hover-zoom img{
+    width: 100%;
+}
+
+.img-hover-zoom span:nth-child(2){
+    color: white;
+    position: absolute;
+    top: 24px;
+    left: 20px;
+}
+
+.img-hover-zoom span:nth-child(3){
+    color: white;
+    position: absolute;
+    bottom: 24px;
+    left: 20px;
+    margin-right: 20px;
+}
