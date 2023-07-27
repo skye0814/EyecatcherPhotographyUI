@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import '../styles/navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { Transition } from 'semantic-ui-react';
  
 export default function NavBar(){
     // User dropdown function
@@ -45,16 +47,16 @@ export default function NavBar(){
           <div className="menu" style={{display: showMobileMenu ? 'block' : 'none'}}>
             <li>
               {/* <a href="/">Services</a> */}
-              <Link to="services">Services</Link>
+              <Link to="services" onClick={toggleMobileMenu}>Services</Link>
             </li>
             <li>
-              <a href="/">Cart</a>
+              <Link to="/" onClick={toggleMobileMenu}>Cart</Link>
             </li>
             <li>
-              <a href="/">Support</a>
+              <Link to="/" onClick={toggleMobileMenu}>Support</Link>
             </li>
             <li>
-              <a href="/">About</a>
+              <Link to="/" onClick={toggleMobileMenu}>About</Link>
             </li>
           </div>
         </ul>
@@ -62,33 +64,34 @@ export default function NavBar(){
         <div className="right-nav">
           <div className="user-picture-div">
             <FontAwesomeIcon className="user-picture" icon="user-circle" onClick={toggleUserDropdown}></FontAwesomeIcon>
-
-            {showUserDropdown && (<div className="user-picture-dropdown">
-              <div className="user-dropdown-arrow">
-                <FontAwesomeIcon icon="play" style={{color: "white"}}></FontAwesomeIcon>
+            <Transition visible={showUserDropdown} animation='fade down' duration={300}>
+              <div className="user-picture-dropdown">
+                <div className="user-dropdown-arrow">
+                  <FontAwesomeIcon icon="play" style={{color: "white"}}></FontAwesomeIcon>
+                </div>
+                <div
+                  style={{
+                    textAlign: "justify",
+                    textJustify: "inter-word",
+                    fontSize: 15,
+                    paddingTop: 13
+                  }}
+                >
+                  You are not logged in. <b>Log in</b> or <b>Sign up</b> below.
+                </div>
+                <div className="login-buttons">
+                  <button className="btn btn-primary">LOGIN</button>
+                  <button className="btn btn-primary">SIGNUP</button>
+                </div>
               </div>
-              <div
-                style={{
-                  textAlign: "justify",
-                  textJustify: "inter-word",
-                  fontSize: 15,
-                  paddingTop: 13
-                }}
-              >
-                You are not logged in. <b>Log in</b> or <b>Sign up</b> below.
-              </div>
-              <div className="login-buttons">
-                <button className="btn btn-primary">LOGIN</button>
-                <button className="btn btn-primary">SIGNUP</button>
-              </div>
-            </div>)}
+            </Transition>
 
           </div>
           <input type="checkbox" id="checkbox_toggle" onClick={toggleMobileMenu}/>
           <label
             htmlFor="checkbox_toggle"
             className="hamburger"
-            style={{ fontSize: 32 }}
+            style={{ fontSize: 32, paddingTop: '15px' }}
           >
             ☰
           </label>
