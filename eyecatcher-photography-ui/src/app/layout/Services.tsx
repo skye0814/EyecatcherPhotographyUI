@@ -37,9 +37,26 @@ export function VariableGridView(){
             <Grid columns={1}>
                 <Grid.Row stretched>
                     <Grid.Column>
-                        <Segment>1</Segment>
-                        <Segment>1</Segment>
-                        <Segment>1</Segment>
+                        <div className='img-hover-zoom img-hover-zoom--colorize'>
+                            <img src='assets/images/services/birthday1.jpg' alt='Debutant' />
+                            <span>Birthday Services</span>
+                            <span>EyeCatch your birthday with wonderful shots</span>
+                        </div>
+                        <div className='img-hover-zoom img-hover-zoom--colorize'>
+                            <img src='assets/images/services/christening1.jpg' alt='Father holding a baby' />
+                            <span>Christening Services</span>
+                            <span>EyeCatch your beautiful kid of joy</span>
+                        </div>
+                        <div className='img-hover-zoom img-hover-zoom--colorize'>
+                            <img src='assets/images/services/wedding1.jpg' alt='Groom and bride' />
+                            <span>Wedding Services</span>
+                            <span>EyeCatch your wedding memories with your lifetime partner</span>
+                        </div>
+                        <div className='img-hover-zoom img-hover-zoom--colorize'>
+                            <img src='assets/images/services/others1.jpg' alt='Opening of an establishment' />
+                            <span>Other Services</span>
+                            <span>Want to see more? Click here for other EyeCatcher services</span>
+                        </div>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
