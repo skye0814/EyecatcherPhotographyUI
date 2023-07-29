@@ -28,6 +28,8 @@ transform: scale(1.1);
     position: absolute;
     top: 24px;
     left: 20px;
+    font-size: 20px;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 1);
 }
 
 .img-hover-zoom span:nth-child(3){
@@ -36,4 +38,17 @@ transform: scale(1.1);
     bottom: 24px;
     left: 20px;
     margin-right: 20px;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 1);
+}
+
+@media (max-width: 768px){
+    .img-hover-zoom{
+        margin: 5px 0;
+        overflow: hidden;
+        position: relative;
+    }
+    .img-hover-zoom img{
+        width: 100%;
+        margin-bottom: -120px;
+    }
 }
