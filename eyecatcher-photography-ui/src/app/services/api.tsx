@@ -1,9 +1,14 @@
 import axios from 'axios';
 
-const API_BASE_URL = '';
+const API_BASE_URL = 'https://localhost:7081';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'SAMEORIGIN',
+  }
 });
 
 export const get = async (url: string) => {
