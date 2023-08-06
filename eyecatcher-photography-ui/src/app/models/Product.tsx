@@ -8,4 +8,5 @@ export interface Product{
     freeText3: string,
     freeText4: string,
     price: number,
+    productCategoryID: number | null
 }
