@@ -5,14 +5,17 @@ import 'semantic-ui-css/semantic.min.css'
 import App from './app/layout/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <ChakraProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ChakraProvider>
     
 );
 
