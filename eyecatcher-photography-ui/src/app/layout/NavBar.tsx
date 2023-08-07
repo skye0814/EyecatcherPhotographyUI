@@ -3,6 +3,7 @@ import '../styles/navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { Transition } from 'semantic-ui-react';
+import { Button, Wrap, WrapItem } from '@chakra-ui/react';
  
 export default function NavBar(){
     // User dropdown function
@@ -79,10 +80,18 @@ export default function NavBar(){
                 >
                   You are not logged in. <b>Log in</b> or <b>Sign up</b> below.
                 </div>
-                <div className="login-buttons">
+                {/* <div className="login-buttons">
                   <button className="btn btn-primary">LOGIN</button>
                   <button className="btn btn-primary">SIGNUP</button>
-                </div>
+                </div> */}
+                <Wrap>
+                  <WrapItem>
+                    <Button colorScheme='gray'><Link to="#">Log in</Link></Button>
+                  </WrapItem>
+                  <WrapItem>
+                    <Button colorScheme='gray'>Sign up</Button>
+                  </WrapItem>
+                </Wrap>
               </div>
             </Transition>
 
