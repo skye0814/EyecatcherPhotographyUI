@@ -86,7 +86,7 @@ export default function NavBar(){
                 </div> */}
                 <Wrap>
                   <WrapItem>
-                    <Button colorScheme='gray'><Link to="#">Log in</Link></Button>
+                    <Button colorScheme='gray' onClick={() => window.location.href = '/login'}>Log in</Button>
                   </WrapItem>
                   <WrapItem>
                     <Button colorScheme='gray'>Sign up</Button>

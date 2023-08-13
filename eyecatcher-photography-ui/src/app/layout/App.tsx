@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import Services from './Services';
 import Home from './Home';
 import FooterBar from './FooterBar';
+import LoginPage from './LoginPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <NavBar />
         <div>
             <Routes>
+              <Route path='/login' element={<LoginPage />} />
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
             </Routes>
