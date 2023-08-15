@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/loginpage.css';
 import { color } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function LoginPage(){
     return(
@@ -8,7 +9,7 @@ export default function LoginPage(){
             <div className="container">
                 <div className="row justify-content-center">
                 <div className="col-md-6 text-center mb-5">
-                    <h2 className="heading-section">Eyecatcher Photography</h2>
+                    <h2 className="heading-section"><FontAwesomeIcon className="shet" icon="facebook"></FontAwesomeIcon>Eyecatcher Photography</h2>
                 </div>
                 </div>
                 <div className="row justify-content-center">
@@ -57,13 +58,14 @@ export default function LoginPage(){
                             </div>
                         </div>
                     </form>
-                    <p className="w-100 text-center">— Or Sign In With —</p>
+                    <p className="w-100 text-center">— or sign in with —</p>
                     <div className="social d-flex text-center">
+                    
                         <a href="#" className="px-2 py-2 mr-md-1 rounded">
-                        <span className="ion-logo-facebook mr-2" /> Facebook
+                         Facebook
                         </a>
                         <a href="#" className="px-2 py-2 ml-md-1 rounded">
-                        <span className="ion-logo-twitter mr-2" /> Twitter
+                        <span className="ion-logo-twitter mr-2" /> Google
                         </a>
                     </div>
                     </div>
