@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import '../styles/services.css';
 import { Breadcrumb, Grid, Item, Segment } from 'semantic-ui-react';
 import TitlePresentation from '../common/TitlePresentation';
-import { get, headers, post } from '../services/api';
+import { get } from '../services/api';
 import { PagedResponse } from '../models/PagedResponse';
 import { Product } from '../models/Product';
 import { ProductCategory } from '../models/ProductCategory';
 import { Link } from 'react-router-dom';
+import ErrorFetch from '../common/ErrorFetch';
 
 const sections = [
     { key: 'Home', content: 'Home', link: false, href:'../' },
@@ -14,6 +15,7 @@ const sections = [
   ];
 
 export default function Services(){
+    const [error, setError] = useState(null);
     const [data, setData] = useState<PagedResponse<ProductCategory[]>>();
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const handleResize = () => {
@@ -22,19 +24,13 @@ export default function Services(){
 
     // Product Categories fetch effect
     useEffect(() => {
-        const fetchData = async () => {
-            try 
-            {
-                const response = await get('/ProductCategory/GetAllProductCategory'); 
+        get('/ProductCategory/GetAllProductCategory')
+            .then(response => {
                 setData(response);
-                console.log(response);
-            } 
-            catch (error) 
-            {
-                console.error('Error fetching data:', error);
-            }
-        };
-        fetchData();
+            })
+            .catch(error => {
+                setError(error.message);
+            })
     }, []);
 
     // Resizing effect
@@ -48,18 +44,20 @@ export default function Services(){
     // Change grid column effect
     useEffect(() => {
         var variableGrid = document.getElementById("variable-grid");
-
-        windowWidth < 790 ? variableGrid!.className = 'ui one column grid' : variableGrid!.className = 'ui four column grid'
+        if(variableGrid){
+            windowWidth < 790 ? variableGrid!.className = 'ui one column grid' : variableGrid!.className = 'ui four column grid';
+        }
     });
 
     return(
     <div className='container'>
         <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} />
         <TitlePresentation titleName="Services" />
-        <Grid columns={4} id="variable-grid">
-            {data?.data.map((item) => {
-                return(
-                    
+
+        {error ? <ErrorFetch errorMessage={error}/> : (
+            <Grid columns={4} id="variable-grid">
+                {data?.data.map((item) => {
+                    return(
                         <Grid.Column  key={item.productCategoryID}>
                             <Link to={`products?productCategoryId=${item.productCategoryID}&pageNumber=1&pageSize=10&sortBy=productName`}>
                             <div className='img-hover-zoom img-hover-zoom--colorize'>
@@ -69,9 +67,10 @@ export default function Services(){
                             </div>
                             </Link>
                         </Grid.Column>
-                )
-            })}
-        </Grid>
+                    )
+                })}
+            </Grid>
+        )}
         
     </div>
     );

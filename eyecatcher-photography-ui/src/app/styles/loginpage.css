@@ -456,7 +456,7 @@ pre {
  max-height: 340px;
  overflow-y: scroll; }
 
-.container {
+/* .container {
  width: 100%;
  padding-right: 15px;
  padding-left: 15px;
@@ -480,7 +480,7 @@ pre {
  padding-right: 15px;
  padding-left: 15px;
  margin-right: auto;
- margin-left: auto; }
+ margin-left: auto; } */
 
 .row {
  display: -webkit-box;
@@ -8115,10 +8115,10 @@ a.text-dark:hover, a.text-dark:focus {
    page-break-after: avoid; }
  @page {
    size: a3; }
- body {
+ /* body {
    min-width: 992px !important; }
  .container {
-   min-width: 992px !important; }
+   min-width: 992px !important; } */
  .navbar {
    display: none; }
  .badge {

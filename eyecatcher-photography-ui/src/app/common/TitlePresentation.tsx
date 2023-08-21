@@ -12,7 +12,7 @@ export default function TitlePresentation({titleName}: Props){
         <span>
             <hr style={{width: '45%', color: 'red'}} />
                 Presents
-            <hr style={{width: '45%', color: 'red', height: '2px'}} />
+            <hr style={{width: '45%', color: 'red'}} />
         </span>
         <span>{titleName}</span>
     </div>
