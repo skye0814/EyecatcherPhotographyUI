@@ -6,6 +6,7 @@ import { get, headers, post } from '../services/api';
 import { PagedResponse } from '../models/PagedResponse';
 import { Product } from '../models/Product';
 import { ProductCategory } from '../models/ProductCategory';
+import { Link } from 'react-router-dom';
 
 const sections = [
     { key: 'Home', content: 'Home', link: false, href:'../' },
@@ -46,30 +47,28 @@ export default function Services(){
 
     // Change grid column effect
     useEffect(() => {
-        if (windowWidth < 790)
-        {
-            document.getElementById("variable-grid")!.className = 'ui one column grid';
-        }
-        else
-        {
-            document.getElementById("variable-grid")!.className = 'ui four column grid';
-        }
+        var variableGrid = document.getElementById("variable-grid");
+
+        windowWidth < 790 ? variableGrid!.className = 'ui one column grid' : variableGrid!.className = 'ui four column grid'
     });
 
     return(
     <div className='container'>
-        <Breadcrumb icon='right angle' sections={sections} style={{marginBottom: '18px'}} />
+        <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} />
         <TitlePresentation titleName="Services" />
         <Grid columns={4} id="variable-grid">
             {data?.data.map((item) => {
                 return(
-                    <Grid.Column  key={item.productCategoryID}>
-                        <div className='img-hover-zoom img-hover-zoom--colorize'>
-                            <img src={item.imageUrl} />
-                            <span>{item.categoryName}</span>
-                            <span>{item.categoryDescription}</span>
-                        </div>
-                    </Grid.Column>
+                    
+                        <Grid.Column  key={item.productCategoryID}>
+                            <Link to={`products?productCategoryId=${item.productCategoryID}&pageNumber=1&pageSize=10&sortBy=productName`}>
+                            <div className='img-hover-zoom img-hover-zoom--colorize'>
+                                <img src={item.imageUrl} />
+                                <span>{item.categoryName}</span>
+                                <span>{item.categoryDescription}</span>
+                            </div>
+                            </Link>
+                        </Grid.Column>
                 )
             })}
         </Grid>

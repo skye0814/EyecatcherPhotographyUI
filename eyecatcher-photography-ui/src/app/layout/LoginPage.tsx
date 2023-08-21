@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../styles/loginpage.css';
 import { color } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function LoginPage(){
+    useEffect(() => {
+        document.getElementById("navbar")!.style.visibility = 'hidden';
+    },[]);
+
     return(
-        <section className="ftco-section">
+        <div className="login-page-cover">
+            <section className="ftco-section">
             <div className="container">
                 <div className="row justify-content-center">
                 <div className="col-md-6 text-center mb-5">
@@ -73,6 +78,7 @@ export default function LoginPage(){
                 </div>
             </div>
             </section>
+        </div>
 
     );
 }

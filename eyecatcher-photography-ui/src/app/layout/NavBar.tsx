@@ -3,7 +3,7 @@ import '../styles/navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { Transition } from 'semantic-ui-react';
-import { Button, Wrap, WrapItem } from '@chakra-ui/react';
+import { Button, Collapse, SlideFade, Wrap, WrapItem } from '@chakra-ui/react';
  
 export default function NavBar(){
     // User dropdown function
@@ -15,7 +15,6 @@ export default function NavBar(){
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const toggleMobileMenu = () => {
       setShowMobileMenu(!showMobileMenu);
-      setShowUserDropdown(false);
     }
 
     useEffect(() => {
@@ -25,7 +24,7 @@ export default function NavBar(){
         let prevScrollPos = window.scrollY;
         window.addEventListener('scroll', () => {
           let currentScrollPos = window.scrollY;
-          prevScrollPos > currentScrollPos ? navBar.style.top = '0' : navBar.style.top = '-65px';
+          prevScrollPos > currentScrollPos ? navBar.style.top = '0' : navBar.style.top = '-70px';
           prevScrollPos = currentScrollPos;
           setShowUserDropdown(false);
           setShowMobileMenu(false);
@@ -37,7 +36,7 @@ export default function NavBar(){
         <nav className="navbar" id='navbar'>
         {/* LOGO */}
         <div className="logo">
-            <img className="logo-image" src='assets/images/logowhite.png' alt='logowhite' />
+            <img className="logo-image" src='/images/logowhite.png' alt='logowhite' />
             <span style={{ fontSize: 15 }}>
               Eyecatcher
               <br /> Photography
@@ -65,8 +64,8 @@ export default function NavBar(){
         <div className="right-nav">
           <div className="user-picture-div">
             <FontAwesomeIcon className="user-picture" icon="user-circle" onClick={toggleUserDropdown}></FontAwesomeIcon>
-            <Transition visible={showUserDropdown} animation='fade down' duration={300}>
-              <div className="user-picture-dropdown">
+            <Collapse in={showUserDropdown}>
+            <div className="user-picture-dropdown">
                 <div className="user-dropdown-arrow">
                   <FontAwesomeIcon icon="play" style={{color: "white"}}></FontAwesomeIcon>
                 </div>
@@ -80,10 +79,6 @@ export default function NavBar(){
                 >
                   You are not logged in. <b>Log in</b> or <b>Sign up</b> below.
                 </div>
-                {/* <div className="login-buttons">
-                  <button className="btn btn-primary">LOGIN</button>
-                  <button className="btn btn-primary">SIGNUP</button>
-                </div> */}
                 <Wrap>
                   <WrapItem>
                     <Button colorScheme='gray' onClick={() => window.location.href = '/login'}>Log in</Button>
@@ -93,14 +88,17 @@ export default function NavBar(){
                   </WrapItem>
                 </Wrap>
               </div>
-            </Transition>
+            </Collapse>
+            {/* <Transition visible={showUserDropdown} animation='fade down' duration={3000}>
+              
+            </Transition> */}
 
           </div>
           <input type="checkbox" id="checkbox_toggle" onClick={toggleMobileMenu}/>
           <label
             htmlFor="checkbox_toggle"
             className="hamburger"
-            style={{ fontSize: 32, paddingTop: '15px' }}
+            style={{ fontSize: 32, paddingTop: '6px' }}
           >
             ☰
           </label>

@@ -13,6 +13,7 @@ import Services from './Services';
 import Home from './Home';
 import FooterBar from './FooterBar';
 import LoginPage from './LoginPage';
+import Products from './Products';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path='/login' element={<LoginPage />} />
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
+              <Route path='/services/products' element={<Products />} />
             </Routes>
         </div>
       {/* <FooterBar /> */}
