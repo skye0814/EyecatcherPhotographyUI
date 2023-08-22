@@ -73,7 +73,6 @@ export default function NavBar(){
                   style={{
                     textAlign: "justify",
                     textJustify: "inter-word",
-                    fontSize: 15,
                     paddingTop: 13
                   }}
                 >
@@ -81,10 +80,10 @@ export default function NavBar(){
                 </div>
                 <Wrap>
                   <WrapItem>
-                    <Button colorScheme='gray' onClick={() => window.location.href = '/login'}>Log in</Button>
+                    <Button className='primary-btn' colorScheme='gray' onClick={() => window.location.href = '/login'}>Log in</Button>
                   </WrapItem>
                   <WrapItem>
-                    <Button colorScheme='gray'>Sign up</Button>
+                    <Button className='primary-btn' colorScheme='gray'>Sign up</Button>
                   </WrapItem>
                 </Wrap>
               </div>

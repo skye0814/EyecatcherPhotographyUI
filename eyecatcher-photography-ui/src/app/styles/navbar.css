@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Product Sans';
+    font-family: "Product Sans";
   }
   
   a {
@@ -60,7 +60,7 @@
   .menu {
     display: flex;
     gap: 1em;
-    font-size: 15px;
+    /* font-size: 15px; */
   }
   
   .menu li:hover {
@@ -173,7 +173,6 @@
     .menu {
         display: flex !important;
         gap: 1em;
-        font-size: 15px;
       }
     .menu li {
         padding: 5px 14px;

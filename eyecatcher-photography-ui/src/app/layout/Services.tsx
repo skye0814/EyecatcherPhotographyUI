@@ -29,7 +29,7 @@ export default function Services(){
                 setData(response);
             })
             .catch(error => {
-                setError(error.message);
+                setError(error);
             })
     }, []);
 
@@ -50,11 +50,11 @@ export default function Services(){
     });
 
     return(
-    <div className='container'>
+    <div className='container' id='container'>
         <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} />
         <TitlePresentation titleName="Services" />
 
-        {error ? <ErrorFetch errorMessage={error}/> : (
+        {error ? <ErrorFetch /> : (
             <Grid columns={4} id="variable-grid">
                 {data?.data.map((item) => {
                     return(
