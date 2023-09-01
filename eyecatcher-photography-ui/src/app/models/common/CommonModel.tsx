@@ -1,3 +1,3 @@
 export interface CommonModel {
-    productCategoryId: string | number | null
+    productCategoryId?: string | number | null
 }
