@@ -61,7 +61,7 @@ export default function Services(){
                 {data?.data.map((item) => {
                     return(
                         <Grid.Column  key={item.productCategoryID}>
-                            <Link to={`products?productCategoryId=${item.productCategoryID}&pageNumber=1&pageSize=10&sortBy=productName`}>
+                            <Link to={`products?productCategoryId=${item.productCategoryID}`}>
                             <div className='img-hover-zoom img-hover-zoom--colorize'>
                                 <img src={item.imageUrl} />
                                 <span>{item.categoryName}</span>

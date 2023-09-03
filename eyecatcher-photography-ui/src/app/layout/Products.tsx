@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Breadcrumb } from "semantic-ui-react";
+import { Breadcrumb, Button } from "semantic-ui-react";
 import { useSearchParams } from "react-router-dom";
 import { PagedRequest } from "../models/PagedRequest";
 import { get } from "../services/api";
@@ -16,21 +16,39 @@ export default function Products(){
     const [product, setProduct] = useState<PagedResponse<Product[]>>();
     const [error, setError] = useState(null);
     const [searchParams]: any = useSearchParams();
-    const queryParams: PagedRequest = {
-        pageNumber: !isNaN(parseInt(searchParams.get('pageNumber'))) ? searchParams.get('pageNumber') : 1,
-        pageSize: !isNaN(parseInt(searchParams.get('pageSize'))) ? searchParams.get('pageSize') : 10,
-        sortBy: searchParams.get('sortBy'),
+    const initialQueryParams: PagedRequest = {
+        pageNumber: 1, //!isNaN(parseInt(searchParams.get('pageNumber'))) ? searchParams.get('pageNumber') : 1,
+        pageSize: 10, //!isNaN(parseInt(searchParams.get('pageSize'))) ? searchParams.get('pageSize') : 10,
+        sortBy: 'productName', //searchParams.get('sortBy'),
         productCategoryId: !isNaN(parseInt(searchParams.get('productCategoryId'))) ? searchParams.get('productCategoryId') : null
     }
+    const [queryParams, setQueryParams] = useState<PagedRequest>(initialQueryParams);
 
-    useEffect(()=> {
-        get(`/Product/Products?pageNumber=${queryParams.pageNumber}&pageSize=${queryParams.pageSize}&sortBy=${queryParams.sortBy}&productCategoryId=${queryParams.productCategoryId}`)
+    const nextPage = () => {
+        const updatedQueryParams: PagedRequest = {...queryParams};
+        if(product!.data.length < queryParams.pageSize){
+            updatedQueryParams.pageNumber += 1;
+            setQueryParams(updatedQueryParams);
+        }
+    }
+
+    const prevPage = () => {
+        const updatedQueryParams: PagedRequest = {...queryParams};
+    }
+
+    const fetchProduct = (queryParams: PagedRequest) => {
+        get(`/Product/Products?pageNumber=${queryParams.pageNumber}&pageSize=${queryParams.pageSize}
+            &sortBy=${queryParams.sortBy}&productCategoryId=${queryParams.productCategoryId}`)
         .then((response)=> {
             setProduct(response);
         })
         .catch((error)=>{
             setError(error);
         })
+    }
+
+    useEffect(() => {
+        fetchProduct(initialQueryParams);
     },[]);
 
     return (
