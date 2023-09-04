@@ -26,11 +26,11 @@ export default function Services(){
     useEffect(() => {
         get('/ProductCategory/GetAllProductCategory')
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 setData(response);
             })
             .catch(error => {
-                console.log(error);
+                // console.log(error);
                 setError(error);
             })
     }, []);
