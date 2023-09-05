@@ -14,14 +14,14 @@ const sections = [
   ];
 
 export default function Products(){
-    let product: PagedResponse<Product[]>;
+    const [products, setProducts] = useState<PagedResponse<Product[]>>();
 
     const fetchProduct = (queryParams: PagedRequest) => {
         get(`/Product/Products?pageNumber=${queryParams.pageNumber}&pageSize=${queryParams.pageSize}
             &sortBy=${queryParams.sortBy}&productCategoryId=${queryParams.productCategoryId}`)
         .then((response)=> {
-            product = response;
-            console.log(product);
+            setProducts(response);
+            console.log(products);
         })
         .catch((err)=>{
             setError(err);
@@ -30,38 +30,38 @@ export default function Products(){
     }
     const [error, setError] = useState(null);
     const [searchParams]: any = useSearchParams();
-    
     const [queryParams, setQueryParams] = useState<PagedRequest>({
         pageNumber: 1, //!isNaN(parseInt(searchParams.get('pageNumber'))) ? searchParams.get('pageNumber') : 1,
-        pageSize: 10, //!isNaN(parseInt(searchParams.get('pageSize'))) ? searchParams.get('pageSize') : 10,
+        pageSize: 2, //!isNaN(parseInt(searchParams.get('pageSize'))) ? searchParams.get('pageSize') : 10,
         sortBy: 'productName', //searchParams.get('sortBy'),
         productCategoryId: !isNaN(parseInt(searchParams.get('productCategoryId'))) ? searchParams.get('productCategoryId') : null
     });
 
-    const nextPage = () => {
-        const updatedQueryParams: PagedRequest = {...queryParams};
+    const nextPage = (page: number) => {
+        let updatedQueryParams: PagedRequest = {...queryParams};
 
-        if (product){
-            if(product!.data.length < queryParams.pageSize){
-                updatedQueryParams.pageNumber += 1;
-                setQueryParams(updatedQueryParams);
-                fetchProduct(queryParams);
-            }
-            else{
-                console.log("error on next page");
-            }
+        updatedQueryParams.pageNumber = page;
+        setQueryParams(updatedQueryParams);
+        fetchProduct(updatedQueryParams);
+
+        // not working at 2, works at 3
+        if (products?.pageNumber == 2){
+            console.log("test");
         }
     }
     
-
-    // const prevPage = () => {
-    //     const updatedQueryParams: PagedRequest = {...queryParams};
-    // }
+    useEffect(() => {
+        fetchProduct(queryParams);
+    }, []);
 
     return (
         <div className="container">
             <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} />
-            <button onClick={()=>{}}>Page up</button>
+            <button onClick={()=>{nextPage(queryParams.pageNumber + 1)}}>Page up</button>
+
+            <p>{queryParams.pageNumber}</p>
+            <div>{products?.pageNumber}</div>
+            <div>{products?.pageSize}</div>
         </div>
         
     );
