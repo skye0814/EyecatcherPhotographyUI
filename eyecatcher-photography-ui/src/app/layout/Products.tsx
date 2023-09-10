@@ -14,14 +14,14 @@ const sections = [
   ];
 
 export default function Products(){
-    const [showNextPage, setShowNextPage] = useState(false);
-    const [showPrevPage, setShowPrevPage] = useState(false);
+    const [hideNextPage, setHideNextPage] = useState(false);
+    const [hidePrevPage, setHidePrevPage] = useState(true);
     const [products, setProducts] = useState<PagedResponse<Product[]>>();
     const [error, setError] = useState(null);
     const [searchParams]: any = useSearchParams();
     const [queryParams, setQueryParams] = useState<PagedRequest>({
         pageNumber: 1,
-        pageSize: 2,
+        pageSize: 1,
         sortBy: 'productName',
         productCategoryId: !isNaN(parseInt(searchParams.get('productCategoryId'))) ? searchParams.get('productCategoryId') : null
     });
@@ -52,30 +52,64 @@ export default function Products(){
             }
         }
     }
+
+    const prevPage = (page: number) => {
+        let updatedQueryParams: PagedRequest = {...queryParams};
+        updatedQueryParams.pageNumber = page;
+        
+        if(products){
+            if(updatedQueryParams.pageNumber < 1){
+                updatedQueryParams.pageNumber = 1;
+                setQueryParams(updatedQueryParams);
+                console.log("works");
+            }
+            else{
+                setQueryParams(updatedQueryParams);
+                fetchProduct(updatedQueryParams);
+            }
+        }
+    }
     
     useEffect(() => {
         // Fetch products on render
         fetchProduct(queryParams);
+    }, []);
 
+    useEffect(() => {
         // Disable next page button
         if(products){
             if(queryParams.pageNumber === products.totalPages){
-                setShowNextPage(false);
+                setHideNextPage(true);
+            }
+            if(queryParams.pageNumber === 1){
+                setHidePrevPage(true);
+            }
+            else{
+                setHidePrevPage(false);
             }
         }
-
-    }, []);
+    }, [queryParams])
 
     return (
         <div className="container">
             <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} />
             <button 
                 id="next-page-btn" 
-                onClick={()=>{nextPage(queryParams.pageNumber + 1)}} 
-                disabled={showNextPage}
+                onClick={()=>{nextPage(queryParams.pageNumber + 1);}} 
+                disabled={hideNextPage}
+                style={{visibility: hideNextPage ? 'hidden': 'visible'}}
             >
                 Page up
             </button>
+            <button 
+                id="prev-page-btn" 
+                onClick={()=>{prevPage(queryParams.pageNumber - 1); console.log(products)}} 
+                disabled={hidePrevPage}
+                style={{visibility: hidePrevPage ? 'hidden': 'visible'}}
+            >
+                Page down
+            </button>
+            
 
             <p>{queryParams.pageNumber}</p>
             <div>{products?.pageNumber}</div>
