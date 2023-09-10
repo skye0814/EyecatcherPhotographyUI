@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import '../styles/services.css';
 import { Breadcrumb, Grid, Item, Segment } from 'semantic-ui-react';
 import TitlePresentation from '../common/TitlePresentation';
-import { get } from '../services/api';
+import { getAsync } from '../services/api';
 import { PagedResponse } from '../models/PagedResponse';
 import { Product } from '../models/Product';
 import { ProductCategory } from '../models/ProductCategory';
@@ -24,7 +24,7 @@ export default function Services(){
 
     // Product Categories fetch effect
     useEffect(() => {
-        get('/ProductCategory/GetAllProductCategory')
+        getAsync('/ProductCategory/GetAllProductCategory')
             .then(response => {
                 // console.log(response);
                 setData(response);

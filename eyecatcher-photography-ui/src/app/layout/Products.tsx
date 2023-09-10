@@ -5,13 +5,6 @@ import { PagedRequest } from "../models/PagedRequest";
 import { get } from "../services/api";
 import { PagedResponse } from "../models/PagedResponse";
 import { Product } from "../models/Product";
-import { useRadio } from "@chakra-ui/react";
-
-const sections = [
-    { key: 'Home', content: 'Home', link: false, href:'../' },
-    { key: 'Services', content: 'Services', link: false, href:'/services' },
-    { key: 'Products', content: 'Products', active: true, href:'/services/products' },
-  ];
 
 export default function Products(){
     const [hideNextPage, setHideNextPage] = useState(false);
@@ -21,14 +14,21 @@ export default function Products(){
     const [searchParams]: any = useSearchParams();
     const [queryParams, setQueryParams] = useState<PagedRequest>({
         pageNumber: 1,
-        pageSize: 1,
+        pageSize: 4,
         sortBy: 'productName',
         productCategoryId: !isNaN(parseInt(searchParams.get('productCategoryId'))) ? searchParams.get('productCategoryId') : null
     });
+    const sections = [
+        { key: 'Home', content: 'Home', link: false, href:'../' },
+        { key: 'Services', content: 'Services', link: false, href:'/services' },
+        { key: 'Products', content: 'Products', active: true, href:`/services/products?productCategoryId=${queryParams.productCategoryId}` },
+    ];
 
     const fetchProduct = (queryParams: PagedRequest) => {
-        get(`/Product/Products?pageNumber=${queryParams.pageNumber}&pageSize=${queryParams.pageSize}
-            &sortBy=${queryParams.sortBy}&productCategoryId=${queryParams.productCategoryId}`)
+        get(`/Product/Products?pageNumber=${queryParams.pageNumber}
+            &pageSize=${queryParams.pageSize}
+            &sortBy=${queryParams.sortBy}
+            &productCategoryId=${queryParams.productCategoryId}`)
         .then((response)=> {
             setProducts(response);
         })
@@ -76,7 +76,7 @@ export default function Products(){
     }, []);
 
     useEffect(() => {
-        // Disable next page button
+        // Disables next and page button
         if(products){
             if(queryParams.pageNumber === products.totalPages){
                 setHideNextPage(true);
@@ -88,7 +88,7 @@ export default function Products(){
                 setHidePrevPage(false);
             }
         }
-    }, [queryParams])
+    }, [products])
 
     return (
         <div className="container">

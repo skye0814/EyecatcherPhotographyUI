@@ -12,7 +12,7 @@ const api = axios.create({
   headers
 });
 
-export const get = async (url: string) => {
+export const getAsync = async (url: string) => {
   try {
     const response = await api.get(url);
     return response.data;
@@ -21,13 +21,35 @@ export const get = async (url: string) => {
   }
 };
 
-export const post = async (url: string, data: any) => {
+export const get = (url: string) => {
+  return api
+    .get(url)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      throw error;
+    });
+};
+
+export const postAsync = async (url: string, data: any) => {
   try {
     const response = await api.post(url, data);
     return response.data;
   } catch (error) {
     throw error;
   }
+};
+
+export const post = (url: string, data: any) => {
+  return api
+    .post(url, data)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      throw error;
+    });
 };
 
 export const put = async (url: string, data: any) => {
