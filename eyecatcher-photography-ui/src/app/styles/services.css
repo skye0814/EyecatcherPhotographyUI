@@ -1,7 +1,6 @@
 /* override container style from styles.css */
 
 
-
 /* Colorize-zoom Container */
 .img-hover-zoom--colorize img {
     transition: transform .5s, filter 0.7s ease-in-out;

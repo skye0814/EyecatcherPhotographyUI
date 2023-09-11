@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Breadcrumb, Button } from "semantic-ui-react";
+import '../styles/products.css';
+import { Breadcrumb, Button, Grid } from "semantic-ui-react";
 import { useSearchParams } from "react-router-dom";
 import { PagedRequest } from "../models/PagedRequest";
 import { get } from "../services/api";
 import { PagedResponse } from "../models/PagedResponse";
 import { Product } from "../models/Product";
+import ProductCards from "./ProductCards";
 
 export default function Products(){
     const [hideNextPage, setHideNextPage] = useState(false);
@@ -76,6 +78,8 @@ export default function Products(){
     }, []);
 
     useEffect(() => {
+        console.log(products);
+
         // Disables next and page button
         if(products){
             if(queryParams.pageNumber === products.totalPages){
@@ -117,6 +121,14 @@ export default function Products(){
             <p>{queryParams.pageNumber}</p>
             <div>{products?.pageNumber}</div>
             <div>{products?.pageSize}</div>
+            <Grid columns={3} centered>
+                <Grid.Column>
+                    <ProductCards/>
+                </Grid.Column>
+                <Grid.Column>
+                    <ProductCards/>
+                </Grid.Column>
+            </Grid>
         </div>
         
     );
