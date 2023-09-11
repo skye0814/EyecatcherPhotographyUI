@@ -16,7 +16,7 @@ export default function Products(){
     const [searchParams]: any = useSearchParams();
     const [queryParams, setQueryParams] = useState<PagedRequest>({
         pageNumber: 1,
-        pageSize: 1,
+        pageSize: 4,
         sortBy: 'productName',
         productCategoryId: !isNaN(parseInt(searchParams.get('productCategoryId'))) ? searchParams.get('productCategoryId') : null
     });
@@ -121,14 +121,18 @@ export default function Products(){
             <p>{queryParams.pageNumber}</p>
             <div>{products?.pageNumber}</div>
             <div>{products?.pageSize}</div>
+
             <Grid columns={3} centered>
-                <Grid.Column>
-                    <ProductCards/>
-                </Grid.Column>
-                <Grid.Column>
-                    <ProductCards/>
-                </Grid.Column>
+            {products?.data.map((product) => {
+                return(
+                    <Grid.Column>
+                        <ProductCards product={product} />
+                    </Grid.Column>
+                )
+            })}
             </Grid>
+                
+            
         </div>
         
     );

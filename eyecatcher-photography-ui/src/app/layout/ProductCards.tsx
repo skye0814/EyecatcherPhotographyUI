@@ -2,8 +2,13 @@ import React from 'react';
 import { Card } from 'flowbite-react';
 import '../styles/services.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Product } from '../models/Product';
 
-export default function ProductCards(){
+interface Props {
+    product: Product | undefined
+}
+
+export default function ProductCards({product}: Props){
     return(
         <Card>
             <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
