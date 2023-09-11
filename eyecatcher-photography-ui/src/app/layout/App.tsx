@@ -13,7 +13,7 @@ import Services from './Services';
 import Home from './Home';
 import FooterBar from './FooterBar';
 import LoginPage from './LoginPage';
-import Products from './Products';
+import Products from './products/Products';
 
 function App() {
   return (

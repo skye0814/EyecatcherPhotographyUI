@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import '../styles/products.css';
+import '../../styles/products.css';
 import { Breadcrumb, Button, Grid } from "semantic-ui-react";
 import { useSearchParams } from "react-router-dom";
-import { PagedRequest } from "../models/PagedRequest";
-import { get } from "../services/api";
-import { PagedResponse } from "../models/PagedResponse";
-import { Product } from "../models/Product";
+import { PagedRequest } from "../../models/PagedRequest";
+import { get } from "../../services/api";
+import { PagedResponse } from "../../models/PagedResponse";
+import { Product } from "../../models/Product";
 import ProductCards from "./ProductCards";
 
 export default function Products(){
@@ -122,10 +122,10 @@ export default function Products(){
             <div>{products?.pageNumber}</div>
             <div>{products?.pageSize}</div>
 
-            <Grid columns={3} centered>
+            <Grid columns={4} centered stretched>
             {products?.data.map((product) => {
                 return(
-                    <Grid.Column>
+                    <Grid.Column key={product.productID}>
                         <ProductCards product={product} />
                     </Grid.Column>
                 )
