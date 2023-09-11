@@ -14,7 +14,7 @@ export default function Products(){
     const [searchParams]: any = useSearchParams();
     const [queryParams, setQueryParams] = useState<PagedRequest>({
         pageNumber: 1,
-        pageSize: 4,
+        pageSize: 1,
         sortBy: 'productName',
         productCategoryId: !isNaN(parseInt(searchParams.get('productCategoryId'))) ? searchParams.get('productCategoryId') : null
     });
@@ -80,6 +80,9 @@ export default function Products(){
         if(products){
             if(queryParams.pageNumber === products.totalPages){
                 setHideNextPage(true);
+            }
+            else{
+                setHideNextPage(false);
             }
             if(queryParams.pageNumber === 1){
                 setHidePrevPage(true);
