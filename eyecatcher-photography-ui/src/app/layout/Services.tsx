@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/services.css';
-import { Breadcrumb, Grid, Item, Segment } from 'semantic-ui-react';
+import { Grid, Item, Segment, Breadcrumb } from 'semantic-ui-react';
 import TitlePresentation from '../common/TitlePresentation';
 import { getAsync } from '../services/api';
 import { PagedResponse } from '../models/PagedResponse';
@@ -8,6 +8,7 @@ import { Product } from '../models/Product';
 import { ProductCategory } from '../models/ProductCategory';
 import { Link } from 'react-router-dom';
 import ErrorFetch from '../common/ErrorFetch';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const sections = [
     { key: 'Home', content: 'Home', link: false, href:'../' },
@@ -54,6 +55,7 @@ export default function Services(){
     return(
     <div className='container' id='container'>
         <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} />
+
         <TitlePresentation titleName="Services" />
 
         {error ? <ErrorFetch /> : (

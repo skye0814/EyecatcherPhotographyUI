@@ -9,7 +9,11 @@ interface Props {
 }
 
 export default function ProductCards({product}: Props){
-    const freeTextArr: string[] = product.freeText1.split(';');
+    let freeTextArr: string[] = [];
+
+    if(product.freeText1 !== null){
+        freeTextArr = product.freeText1.split(';');
+    }
     
     return(
         <Card>
