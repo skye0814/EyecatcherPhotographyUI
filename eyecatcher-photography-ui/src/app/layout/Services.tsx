@@ -25,7 +25,7 @@ export default function Services(){
 
     // Product Categories fetch effect
     useEffect(() => {
-        getAsync('/ProductCategory/GetAllProductCategory')
+        getAsync('/api/productCategory/getAllProductCategory')
             .then(response => {
                 // console.log(response);
                 setData(response);

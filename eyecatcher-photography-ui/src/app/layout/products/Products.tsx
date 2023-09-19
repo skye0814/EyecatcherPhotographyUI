@@ -27,7 +27,7 @@ export default function Products(){
     ];
 
     const fetchProduct = (queryParams: PagedRequest) => {
-        get(`/Product/Products?pageNumber=${queryParams.pageNumber}
+        get(`/api/Product/Products?pageNumber=${queryParams.pageNumber}
             &pageSize=${queryParams.pageSize}
             &sortBy=${queryParams.sortBy}
             &productCategoryId=${queryParams.productCategoryId}`)
