@@ -1,19 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/services.css';
-import { Grid, Item, Segment, Breadcrumb } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import TitlePresentation from '../common/TitlePresentation';
 import { getAsync } from '../services/api';
 import { PagedResponse } from '../models/PagedResponse';
-import { Product } from '../models/Product';
 import { ProductCategory } from '../models/ProductCategory';
 import { Link } from 'react-router-dom';
 import ErrorFetch from '../common/ErrorFetch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const sections = [
-    { key: 'Home', content: 'Home', link: false, href:'../' },
-    { key: 'Services', content: 'Services', active: true, href:'/services' },
-  ];
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import { StyledBreadcrumb } from '../common/MUIStyledComponent';
 
 export default function Services(){
     const [error, setError] = useState(null);
@@ -27,11 +23,9 @@ export default function Services(){
     useEffect(() => {
         getAsync('/api/productCategory/getAllProductCategory')
             .then(response => {
-                // console.log(response);
                 setData(response);
             })
             .catch(error => {
-                // console.log(error);
                 setError(error);
             })
     }, []);
@@ -54,7 +48,19 @@ export default function Services(){
 
     return(
     <div className='container' id='container'>
-        <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} />
+        <Breadcrumbs>
+            <StyledBreadcrumb
+            component="a"
+            href="#"
+            label="Home"
+            icon={<FontAwesomeIcon icon={"home"} style={{fontSize: "11px"}}/>}
+            />
+            <StyledBreadcrumb component="a" href="#" label="Catalog" />
+            <StyledBreadcrumb
+            label="Accessories"
+            />
+        </Breadcrumbs>
+        {/* <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} /> */}
 
         <TitlePresentation titleName="Services" />
 
@@ -75,7 +81,6 @@ export default function Services(){
                 })}
             </Grid>
         )}
-        
     </div>
     );
 }

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import '../styles/navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { Transition } from 'semantic-ui-react';
-import { Button, Collapse, SlideFade, Wrap, WrapItem } from '@chakra-ui/react';
- 
+import { Dropdown, Menu, MenuButton } from '@mui/base';
+import { StyledListbox, StyledMenuItem } from '../common/MUIStyledComponent';
+
 export default function NavBar(){
     // User dropdown function
     const [showUserDropdown, setShowUserDropdown] = useState(false);
@@ -63,45 +63,36 @@ export default function NavBar(){
 
         <div className="right-nav">
           <div className="user-picture-div">
-            <FontAwesomeIcon className="user-picture" icon="user-circle" onClick={toggleUserDropdown}></FontAwesomeIcon>
-            <Collapse in={showUserDropdown}>
-            <div className="user-picture-dropdown">
-                <div className="user-dropdown-arrow">
-                  <FontAwesomeIcon icon="play" style={{color: "white"}}></FontAwesomeIcon>
-                </div>
-                <div
-                  style={{
-                    textAlign: "justify",
-                    textJustify: "inter-word",
-                    paddingTop: 13
-                  }}
-                >
-                  You are not logged in. <b>Log in</b> or <b>Sign up</b> below.
-                </div>
-                <Wrap>
-                  <WrapItem>
-                    <Button className='primary-btn' colorScheme='gray' onClick={() => window.location.href = '/login'}>Log in</Button>
-                  </WrapItem>
-                  <WrapItem>
-                    <Button className='primary-btn' colorScheme='gray'>Sign up</Button>
-                  </WrapItem>
-                </Wrap>
-              </div>
-            </Collapse>
-            {/* <Transition visible={showUserDropdown} animation='fade down' duration={3000}>
-              
-            </Transition> */}
+            <Dropdown>
+              <MenuButton><FontAwesomeIcon className="user-picture" icon="user-circle" onClick={toggleUserDropdown}></FontAwesomeIcon></MenuButton>
+              <Menu 
+                slots={{ listbox: StyledListbox }} 
+                style={{ zIndex: "999"}}
+              >
+                <StyledMenuItem onClick={() => window.location.href = '/login'}>
+                  Profile
+                </StyledMenuItem>
+                <StyledMenuItem>
+                  Settings
+                </StyledMenuItem>
+                <StyledMenuItem>
+                  Log out
+                </StyledMenuItem>
+              </Menu>
+            </Dropdown>
 
           </div>
           <input type="checkbox" id="checkbox_toggle" onClick={toggleMobileMenu}/>
           <label
             htmlFor="checkbox_toggle"
             className="hamburger"
-            style={{ fontSize: 32, paddingTop: '6px' }}
+            style={{ fontSize: 32 }}
           >
             ☰
           </label>
         </div>
       </nav>
     );
+    
 }
+

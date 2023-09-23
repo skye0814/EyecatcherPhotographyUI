@@ -14,21 +14,45 @@ import Home from './Home';
 import FooterBar from './FooterBar';
 import LoginPage from './LoginPage';
 import Products from './products/Products';
+import { ThemeProvider } from '@emotion/react';
+import createTheme from '@mui/material/styles/createTheme';
 
 function App() {
+  const theme = createTheme();
+  // const theme = {
+  //   colors: {
+  //     primary: 'hotpink'
+  //   },
+  //   palette: {
+  //     mode: "light",
+  //     grey :{
+  //       700: "#dddddd"
+  //     }
+  //   },
+  //   typography: {
+  //     fontSize: "1rem"
+  //   },
+  //   vars: {
+  //     fontSize: "1rem"
+  //   },
+  //   spacing: (factor: any) => `${0.25 * factor}rem`
+  // }
+  
   return (
-    <div className="App">
-      <NavBar />
-        <div>
-            <Routes>
-              <Route path='/login' element={<LoginPage />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path='/services/products' element={<Products />} />
-            </Routes>
-        </div>
-      {/* <FooterBar /> */}
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <NavBar />
+          <div>
+              <Routes>
+                <Route path='/login' element={<LoginPage />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/services" element={<Services />} />
+                <Route path='/services/products' element={<Products />} />
+              </Routes>
+          </div>
+        {/* <FooterBar /> */}
+      </div>
+    </ThemeProvider>
   );
 }
 
