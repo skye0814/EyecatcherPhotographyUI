@@ -7,9 +7,7 @@ import { PagedResponse } from '../models/PagedResponse';
 import { ProductCategory } from '../models/ProductCategory';
 import { Link } from 'react-router-dom';
 import ErrorFetch from '../common/ErrorFetch';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import { StyledBreadcrumb } from '../common/MUIStyledComponent';
+import { CssBaseline, CssVarsProvider, GlobalStyles, Typography } from '@mui/joy';
 
 export default function Services(){
     const [error, setError] = useState(null);
@@ -47,20 +45,20 @@ export default function Services(){
     });
 
     return(
+        <CssVarsProvider>
+        <CssBaseline />
+        <GlobalStyles
+        styles={{
+          ':root': {
+            '--Collapsed-breakpoint': '769px', // form will stretch when viewport is below `769px`
+            '--Cover-width': '40vw', // must be `vw` only
+            '--Form-maxWidth': '700px',
+            '--Transition-duration': '0.4s', // set to `none` to disable transition
+          },
+        }}
+      />
     <div className='container' id='container'>
-        <Breadcrumbs>
-            <StyledBreadcrumb
-            component="a"
-            href="#"
-            label="Home"
-            icon={<FontAwesomeIcon icon={"home"} style={{fontSize: "11px"}}/>}
-            />
-            <StyledBreadcrumb component="a" href="#" label="Catalog" />
-            <StyledBreadcrumb
-            label="Accessories"
-            />
-        </Breadcrumbs>
-        {/* <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} /> */}
+        
 
         <TitlePresentation titleName="Services" />
 
@@ -72,8 +70,16 @@ export default function Services(){
                             <Link to={`products?productCategoryId=${item.productCategoryID}`}>
                             <div className='img-hover-zoom img-hover-zoom--colorize'>
                                 <img src={item.imageUrl} />
-                                <span>{item.categoryName}</span>
-                                <span>{item.categoryDescription}</span>
+                                <span>
+                                    <Typography level="title-lg" sx={{ my: 1, mb: 3 }} textColor='white'>
+                                        {item.categoryName}
+                                    </Typography>
+                                </span>
+                                <span>
+                                    <Typography level="body-md" sx={{ my: 1, mb: 3 }} textColor='white'>
+                                        {item.categoryDescription}
+                                    </Typography>
+                                </span>
                             </div>
                             </Link>
                         </Grid.Column>
@@ -82,5 +88,6 @@ export default function Services(){
             </Grid>
         )}
     </div>
+    </CssVarsProvider>
     );
 }

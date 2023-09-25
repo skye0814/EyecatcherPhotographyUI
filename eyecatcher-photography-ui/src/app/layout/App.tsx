@@ -15,6 +15,7 @@ import FooterBar from './FooterBar';
 import LoginPage from './LoginPage';
 import Products from './products/Products';
 import { ThemeProvider } from '@emotion/react';
+import { CssVarsProvider } from '@mui/joy';
 import createTheme from '@mui/material/styles/createTheme';
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
   // }
   
   return (
-    <ThemeProvider theme={theme}>
+    <CssVarsProvider>
       <div className="App">
         <NavBar />
           <div>
@@ -52,7 +53,7 @@ function App() {
           </div>
         {/* <FooterBar /> */}
       </div>
-    </ThemeProvider>
+    </CssVarsProvider>
   );
 }
 

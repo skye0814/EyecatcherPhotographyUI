@@ -23,8 +23,6 @@ npm install --save @fortawesome/free-regular-svg-icons
 npm install --save @fortawesome/free-brands-svg-icons
 npm install --save @fortawesome/react-fontawesome
 npm install --save react-router-dom
-npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion @chakra-ui/layout
-npm install flowbite flowbite-react
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/joy @emotion/react @emotion/styled
 npm install @mui/base

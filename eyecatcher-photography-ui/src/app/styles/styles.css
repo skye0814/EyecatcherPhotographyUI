@@ -48,12 +48,14 @@
   background-image: none;
 }
 
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Product Sans';
-  font-size: 15px;
+  font-family: 'Inter';
+  font-size: 14px;
   font-weight: 400;
 }
 

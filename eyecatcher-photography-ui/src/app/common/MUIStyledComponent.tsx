@@ -3,25 +3,6 @@ import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import { blue, grey } from '@mui/material/colors';
 import { MenuItem, menuItemClasses } from '@mui/base';
-import Chip from '@mui/material/Chip';
-import { emphasize } from '@mui/material';
-
-export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-  const backgroundColor =
-    theme.palette.mode === 'light'
-      ? grey[200]
-      : grey[800];
-  return {
-    backgroundColor,
-    height: theme.spacing(3),
-    '&:hover, &:focus': {
-      backgroundColor: emphasize(backgroundColor, 0.06),
-    },
-    '&:active': {
-      backgroundColor: emphasize(backgroundColor, 0.12),
-    },
-  };
-}) as typeof Chip;
 
 export const CustomButton = styled(Button)(
     ({ theme }) => `

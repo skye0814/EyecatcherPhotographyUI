@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { Dropdown, Menu, MenuButton } from '@mui/base';
 import { StyledListbox, StyledMenuItem } from '../common/MUIStyledComponent';
+import { Box, Typography } from '@mui/joy';
 
 export default function NavBar(){
     // User dropdown function
@@ -36,11 +37,29 @@ export default function NavBar(){
         <nav className="navbar" id='navbar'>
         {/* LOGO */}
         <div className="logo">
-            <img className="logo-image" src='/images/logowhite.png' alt='logowhite' />
+            {/* <img className="logo-image" src='/images/logowhite.png' alt='logowhite' />
             <span style={{ fontSize: 15 }}>
               Eyecatcher
               <br /> Photography
-            </span>
+            </span> */}
+            <Typography
+              fontWeight="md"
+              textColor='white'
+              startDecorator={
+                <Box
+                  component="span"
+                  sx={{
+                    width: '50px',
+                    height: '50px',
+                    backgroundImage: `url("/images/logowhite.png")`,
+                    backgroundSize: "110%",
+                    backgroundRepeat: "no-repeat"
+                  }}
+                />
+              }
+            >
+              Eyecatcher <br/> Photography
+            </Typography>
         </div>
         {/* NAVIGATION MENU */}
         <ul className="nav-links">
