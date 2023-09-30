@@ -49,6 +49,11 @@ export default function Services(){
         if(variableGrid){
             windowWidth < 790 ? variableGrid!.className = 'ui one column grid' : variableGrid!.className = 'ui four column grid';
         }
+
+        var variableSkeleton = document.getElementById("variable-skeleton");
+        if(variableSkeleton){
+            windowWidth < 790 ? variableSkeleton!.className = 'ui one column grid' : variableSkeleton!.className = 'ui four column grid';
+        }
     });
 
     return(
@@ -56,22 +61,21 @@ export default function Services(){
         
 
         <TitlePresentation titleName="Services" />
-        <div>
-        <Grid columns={4} id="variable-grid">
-            {loopArraySkeleton.map((_,index) => {
-                return(
-                <Grid.Column key={index}>
-                    <AspectRatio>
-                        <Skeleton height='10em'>
-
-                        </Skeleton>
-                    </AspectRatio>
-                </Grid.Column>
-                );
-            })}
-        </Grid>
-        </div>
-        {error ? <ErrorFetch /> : (
+        {isLoading 
+        ? 
+            <Grid columns={4} id="variable-skeleton">
+                {loopArraySkeleton.map((_,index) => {
+                    return(
+                    <Grid.Column key={index}>
+                        <AspectRatio>
+                            <Skeleton />
+                        </AspectRatio>
+                    </Grid.Column>
+                    );
+                })}
+            </Grid>
+        :
+        error ? <ErrorFetch /> : 
             <Grid columns={4} id="variable-grid">
                 {data?.data.map((item) => {
                     return(
@@ -95,7 +99,7 @@ export default function Services(){
                     )
                 })}
             </Grid>
-        )}
+        }
     </div>
     );
 }

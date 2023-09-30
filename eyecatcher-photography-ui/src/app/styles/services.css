@@ -1,7 +1,7 @@
 /* override container style from styles.css */
-@tailwind base;
-/* @tailwind components; */
-@tailwind utilities;
+.MuiAspectRatio-content{
+    height: 403px !important;
+}
 
 /* Colorize-zoom Container */
 .img-hover-zoom--colorize img {
