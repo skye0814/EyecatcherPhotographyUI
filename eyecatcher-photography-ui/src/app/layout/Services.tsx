@@ -7,24 +7,31 @@ import { PagedResponse } from '../models/PagedResponse';
 import { ProductCategory } from '../models/ProductCategory';
 import { Link } from 'react-router-dom';
 import ErrorFetch from '../common/ErrorFetch';
-import { CssBaseline, CssVarsProvider, GlobalStyles, Typography } from '@mui/joy';
+import { AspectRatio, CssBaseline, CssVarsProvider, GlobalStyles, Skeleton, Typography } from '@mui/joy';
 
 export default function Services(){
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState<PagedResponse<ProductCategory[]>>();
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const loopArraySkeleton = new Array(4).fill(null);
+
     const handleResize = () => {
         setWindowWidth(window.innerWidth);
     };
 
     // Product Categories fetch effect
     useEffect(() => {
+        setIsLoading(true);
+
         getAsync('/api/productCategory/getAllProductCategory')
             .then(response => {
                 setData(response);
+                setIsLoading(false);
             })
             .catch(error => {
                 setError(error);
+                setIsLoading(false);
             })
     }, []);
 
@@ -45,23 +52,25 @@ export default function Services(){
     });
 
     return(
-        <CssVarsProvider>
-        <CssBaseline />
-        <GlobalStyles
-        styles={{
-          ':root': {
-            '--Collapsed-breakpoint': '769px', // form will stretch when viewport is below `769px`
-            '--Cover-width': '40vw', // must be `vw` only
-            '--Form-maxWidth': '700px',
-            '--Transition-duration': '0.4s', // set to `none` to disable transition
-          },
-        }}
-      />
     <div className='container' id='container'>
         
 
         <TitlePresentation titleName="Services" />
+        <div>
+        <Grid columns={4} id="variable-grid">
+            {loopArraySkeleton.map((_,index) => {
+                return(
+                <Grid.Column key={index}>
+                    <AspectRatio>
+                        <Skeleton height='10em'>
 
+                        </Skeleton>
+                    </AspectRatio>
+                </Grid.Column>
+                );
+            })}
+        </Grid>
+        </div>
         {error ? <ErrorFetch /> : (
             <Grid columns={4} id="variable-grid">
                 {data?.data.map((item) => {
@@ -88,6 +97,5 @@ export default function Services(){
             </Grid>
         )}
     </div>
-    </CssVarsProvider>
     );
 }
