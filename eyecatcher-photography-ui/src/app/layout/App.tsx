@@ -20,24 +20,6 @@ import createTheme from '@mui/material/styles/createTheme';
 
 function App() {
   const theme = createTheme();
-  // const theme = {
-  //   colors: {
-  //     primary: 'hotpink'
-  //   },
-  //   palette: {
-  //     mode: "light",
-  //     grey :{
-  //       700: "#dddddd"
-  //     }
-  //   },
-  //   typography: {
-  //     fontSize: "1rem"
-  //   },
-  //   vars: {
-  //     fontSize: "1rem"
-  //   },
-  //   spacing: (factor: any) => `${0.25 * factor}rem`
-  // }
   
   return (
     <CssVarsProvider>

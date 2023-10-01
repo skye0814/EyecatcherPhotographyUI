@@ -10,12 +10,16 @@ import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
 import Link from '@mui/joy/Link';
 import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { UserRequest } from '../models/UserRequest';
+import { post } from '../services/api';
+import { ToastContainer, toast } from 'react-toastify';
+import useAuthStore from '../services/authStore';
 
 interface FormElements extends HTMLFormControlsCollection {
-  email: HTMLInputElement;
+  username: HTMLInputElement;
   password: HTMLInputElement;
 }
 interface SignInFormElement extends HTMLFormElement {
@@ -27,9 +31,21 @@ interface SignInFormElement extends HTMLFormElement {
  * This template uses [`Inter`](https://fonts.google.com/specimen/Inter?query=inter) font.
  */
 export default function LoginPage() {
-    useEffect(()=>{
-        document.getElementById("navbar")!.style.visibility = 'hidden';
-    }, []);
+  const login = useAuthStore((state) => state.login);
+
+  const handleLogin = (data: UserRequest) => {
+      post('/api/user/login', data)
+      .then((response) => {
+          login(response.user, response.token);
+      })
+      .catch((err) => {
+          toast(err.response.data);
+      })
+  }
+
+  useEffect(()=>{
+      document.getElementById("navbar")!.style.visibility = 'hidden';
+  }, []);
 
   return (
     <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
@@ -135,15 +151,15 @@ export default function LoginPage() {
                 event.preventDefault();
                 const formElements = event.currentTarget.elements;
                 const data = {
-                  email: formElements.email.value,
+                  username: formElements.username.value,
                   password: formElements.password.value
                 };
-                alert(JSON.stringify(data, null, 2));
+                handleLogin(data);
               }}
             >
               <FormControl required>
                 <FormLabel>Username</FormLabel>
-                <Input type="email" name="email" />
+                <Input type="username" name="username" />
               </FormControl>
               <FormControl required>
                 <FormLabel>Password</FormLabel>
@@ -199,6 +215,11 @@ export default function LoginPage() {
           backgroundImage:
             'url(/images/loginbackground.jpg)'
         })}
+      />
+      <ToastContainer 
+        autoClose={5000}
+        closeOnClick
+        limit={1}
       />
     </CssVarsProvider>
   );

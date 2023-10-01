@@ -26,4 +26,6 @@ npm install --save react-router-dom
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/joy @emotion/react @emotion/styled
 npm install @mui/base
+npm install zustand
+npm install --save react-toastify
 ```
