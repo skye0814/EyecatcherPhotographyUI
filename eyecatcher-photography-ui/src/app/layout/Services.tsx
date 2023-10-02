@@ -7,7 +7,7 @@ import { PagedResponse } from '../models/PagedResponse';
 import { ProductCategory } from '../models/ProductCategory';
 import { Link } from 'react-router-dom';
 import ErrorFetch from '../common/ErrorFetch';
-import { AspectRatio, CssBaseline, CssVarsProvider, GlobalStyles, Skeleton, Typography } from '@mui/joy';
+import { AspectRatio, Skeleton, Typography } from '@mui/joy';
 
 export default function Services(){
     const [isLoading, setIsLoading] = useState(true);

@@ -16,7 +16,6 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { UserRequest } from '../models/UserRequest';
 import { post } from '../services/api';
 import { ToastContainer, toast } from 'react-toastify';
-import useAuthStore from '../services/authStore';
 
 interface FormElements extends HTMLFormControlsCollection {
   username: HTMLInputElement;
@@ -31,12 +30,10 @@ interface SignInFormElement extends HTMLFormElement {
  * This template uses [`Inter`](https://fonts.google.com/specimen/Inter?query=inter) font.
  */
 export default function LoginPage() {
-  const login = useAuthStore((state) => state.login);
 
   const handleLogin = (data: UserRequest) => {
       post('/api/user/login', data)
       .then((response) => {
-          login(response.user, response.token);
       })
       .catch((err) => {
           toast(err.response.data);
