@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import '../styles/errorfetch.css';
 import { Button } from '@chakra-ui/react';
 
+interface Props {
+    error: string
+}
 
-export default function ErrorFetch(){
+export default function ErrorFetch({error}: Props){
 
     useEffect(()=>{
         var bodyElement = document.getElementsByTagName("body")[0];

@@ -34,6 +34,8 @@ export default function LoginPage() {
   const handleLogin = (data: UserRequest) => {
       post('/api/user/login', data)
       .then((response) => {
+          localStorage.setItem('ep-token', response.token);
+          window.location.href = '/';
       })
       .catch((err) => {
           toast(err.response.data);

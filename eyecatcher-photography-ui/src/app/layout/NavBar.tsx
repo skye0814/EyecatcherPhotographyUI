@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Dropdown, Menu, MenuButton } from '@mui/base';
 import { StyledListbox, StyledMenuItem } from '../common/MUIStyledComponent';
 import { Box, Typography } from '@mui/joy';
+import { logout } from '../services/authService';
 
 export default function NavBar(){
     // User dropdown function
@@ -88,13 +89,13 @@ export default function NavBar(){
                 slots={{ listbox: StyledListbox }} 
                 style={{ zIndex: "999"}}
               >
-                <StyledMenuItem onClick={() => window.location.href = '/login'}>
+                <StyledMenuItem>
                   Profile
                 </StyledMenuItem>
                 <StyledMenuItem>
                   Settings
                 </StyledMenuItem>
-                <StyledMenuItem>
+                <StyledMenuItem onClick={() => logout()}>
                   Log out
                 </StyledMenuItem>
               </Menu>

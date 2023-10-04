@@ -75,7 +75,7 @@ export default function Services(){
                 })}
             </Grid>
         :
-        error ? <ErrorFetch /> : 
+        error ? <ErrorFetch error={error}/> : 
             <Grid columns={4} id="variable-grid">
                 {data?.data.map((item) => {
                     return(
