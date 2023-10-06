@@ -1,12 +1,34 @@
 import axios from 'axios';
+import { getCurrentUser, logout } from './authService';
+import { BASE_API_URL } from './apiVariables';
 
-export const API_BASE_URL = 'https://localhost:7081';
+export const API_BASE_URL = BASE_API_URL;
 // const API_BASE_URL = 'https://congenial-space-spork-7xgqqxp74vpcx6w4-7081.app.github.dev';
 // const API_BASE_URL = 'https://ec2-13-215-199-157.ap-southeast-1.compute.amazonaws.com';
-export var headers = {
-  'Content-Type': 'application/json',
-  'Authorization' : `Bearer ${localStorage.getItem('ep-token') ? localStorage.getItem('ep-token') : ""}`
+
+const createHeader = async () => {
+  let header = {
+    'Content-Type': 'application/json',
+    'Authorization': ''
+  }
+  let token = localStorage.getItem('ep-token');
+
+  if (token) {
+    try {
+      const response = await getCurrentUser();
+      if (response) {
+        header['Authorization'] = `Bearer ${token}`;
+      }
+    }
+    catch (error) {
+      throw error;
+    }
+  }
+
+  return header;
 }
+
+export var headers = await createHeader();
 
 const api = axios.create({
   baseURL: API_BASE_URL,

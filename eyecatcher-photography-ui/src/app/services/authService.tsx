@@ -1,9 +1,12 @@
 import axios from 'axios';
-import { API_BASE_URL, getAsync, headers as API_HEADER, post } from './api';
 import { User } from '../models/User';
+import { BASE_API_URL } from './apiVariables';
 
-const API_URL = API_BASE_URL;
-const headers = API_HEADER;
+const API_URL = BASE_API_URL;
+const headers = {
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${localStorage.getItem('ep-token')}`
+}
 
 const api = axios.create({
     baseURL: API_URL,
