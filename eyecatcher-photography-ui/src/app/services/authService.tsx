@@ -25,27 +25,22 @@ export const logout = (): void => {
   window.location.href = '../login';
 };
 
-// export const isValidUser = () => {
-//     const token = localStorage.getItem('ep-token');
-//     let isValid = false;
+export const getCurrentUser = async () => {
+  const token = localStorage.getItem('ep-token');
+  let user = null;
 
-//     if (token) {
-//         api.get('/api/user/getcurrentuser')
-//         .then (response => {
-//             console.log(response.status);
-//             if (response.status === 200) {
-//                 return !isValid;
-//             }
-//             else {
-//                 isValid = false;
-//             }
-//         })
-//         .catch (error => {
-//             console.log(error);
-//             isValid = false;
-//         });
-//     }
-//     else {
-//         logout();
-//     }
-// };
+  if (token) {
+      try {
+          const response = await api.get('/api/user/getcurrentuser');
+          if (response.status === 200) {
+              user = response.data;
+          }
+      } catch (error) {
+          console.log(error);
+      }
+  } else {
+      logout();
+  }
+
+  return user;
+};
