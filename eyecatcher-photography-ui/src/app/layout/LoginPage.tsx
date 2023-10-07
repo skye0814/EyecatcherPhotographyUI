@@ -38,7 +38,12 @@ export default function LoginPage() {
           window.location.href = '/';
       })
       .catch((err) => {
-          toast(err.response.data);
+          if (err.response === undefined) {
+            toast("Cannot connect to the server");
+          }
+          else {
+            toast(err.response.data);
+          }
       })
   }
 

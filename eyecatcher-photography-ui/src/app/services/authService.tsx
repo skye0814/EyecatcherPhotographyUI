@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { User } from '../models/User';
-import { BASE_API_URL } from './apiVariables';
+import { BASE_API_URL } from '../utilities/apiVariables';
 
 const API_URL = BASE_API_URL;
 const headers = {
@@ -28,22 +28,23 @@ export const logout = (): void => {
   window.location.href = '../login';
 };
 
-export const getCurrentUser = async () => {
+export const getCurrentUser = async (): Promise<AxiosResponse | null>=> {
   const token = localStorage.getItem('ep-token');
-  let user = null;
+  let result = null;
 
   if (token) {
       try {
           const response = await api.get('/api/user/getcurrentuser');
           if (response.status === 200) {
-              user = response.data;
+              result = response;
           }
-      } catch (error) {
-          console.log(error);
+      } 
+      catch (error) {
+        result = null;
       }
   } else {
       logout();
   }
 
-  return user;
+  return result;
 };

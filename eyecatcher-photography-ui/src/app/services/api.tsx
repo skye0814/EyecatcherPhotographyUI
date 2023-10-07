@@ -1,6 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { getCurrentUser, logout } from './authService';
-import { BASE_API_URL } from './apiVariables';
+import { BASE_API_URL } from '../utilities/apiVariables';
+import { User } from '../models/User';
 
 export const API_BASE_URL = BASE_API_URL;
 // const API_BASE_URL = 'https://congenial-space-spork-7xgqqxp74vpcx6w4-7081.app.github.dev';
@@ -15,8 +16,8 @@ const createHeader = async () => {
 
   if (token) {
     try {
-      const response = await getCurrentUser();
-      if (response) {
+      const response: AxiosResponse | null = await getCurrentUser();
+      if (response?.data) {
         header['Authorization'] = `Bearer ${token}`;
       }
     }

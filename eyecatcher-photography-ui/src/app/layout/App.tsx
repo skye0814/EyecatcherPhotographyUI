@@ -17,6 +17,8 @@ import Products from './products/Products';
 import { ThemeProvider } from '@emotion/react';
 import { CssVarsProvider } from '@mui/joy';
 import createTheme from '@mui/material/styles/createTheme';
+import RequireAuth from '../common/RequireAuth';
+import PageNotFound from './PageNotFound';
 
 function App() {
   const theme = createTheme();
@@ -27,10 +29,23 @@ function App() {
         <NavBar />
           <div>
               <Routes>
+                <Route path="/*" element={<PageNotFound />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path="/" element={<Home />} />
-                <Route path="/services" element={<Services />} />
-                <Route path='/services/products' element={<Products />} />
+                <Route 
+                  path="/services" 
+                  element={
+                    <RequireAuth>
+                      <Services />
+                    </RequireAuth>
+                  } />
+                <Route 
+                  path='/services/products' 
+                  element={
+                    <RequireAuth>
+                      <Products />
+                    </RequireAuth>
+                  } />
               </Routes>
           </div>
         {/* <FooterBar /> */}
