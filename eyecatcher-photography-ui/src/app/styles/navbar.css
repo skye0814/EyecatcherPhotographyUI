@@ -90,6 +90,20 @@
   .services:hover .dropdown {
     display: block;
   }
+
+  /*  USER CIRCLE  */
+  .user-info-circle {
+    height: 50px;
+    width: 50px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .user-info-drawer {
+    display: flex;
+    align-items: center;
+  }
   
   
   /* RESPONSIVE NAVBAR MENU STARTS */
