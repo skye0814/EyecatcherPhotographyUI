@@ -204,11 +204,7 @@ export default function NavBar(){
               {drawerItems.map((drawerItem) => {
                   return(
                     <ListItem 
-                      key={drawerItem.text} 
-                      sx={{
-                        display: 'grid', 
-                        gridTemplateColumns: '50px 200px'
-                      }}
+                      key={drawerItem.text}
                       className="custom-list-item"
                       onClick={drawerItem.location}
                     >
@@ -220,10 +216,6 @@ export default function NavBar(){
             </ul>
             <ul className='drawer-list-item' style={{position: 'absolute', bottom: '40px'}}>
               <ListItem
-                sx={{
-                  display: 'grid', 
-                  gridTemplateColumns: '50px 200px'
-                }}
                 className="custom-list-item"
                 onClick={logout}
               >
