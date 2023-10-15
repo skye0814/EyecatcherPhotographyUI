@@ -73,6 +73,9 @@ export default function Products(){
     }
     
     useEffect(() => {
+        // Change title
+        document.title = "Products | " + document.title;
+
         // Fetch products on render
         fetchProduct(queryParams);
     }, []);
