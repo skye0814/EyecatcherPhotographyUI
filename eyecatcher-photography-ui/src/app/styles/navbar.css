@@ -58,6 +58,10 @@
   .logo {
     display: flex;
   }
+
+  .logo:hover{
+    cursor: pointer;
+  }
   
   /* NAVBAR MENU */
   .drawer-list-item{

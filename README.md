@@ -28,4 +28,5 @@ npm install @mui/joy @emotion/react @emotion/styled
 npm install @mui/base
 npm install zustand
 npm install --save react-toastify
+npm install react-image-gallery
 ```

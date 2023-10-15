@@ -111,12 +111,7 @@ export default function NavBar(){
 
   return(
       <nav className="navbar" id='navbar'>
-      <div className="logo">
-          {/* <img className="logo-image" src='/images/logowhite.png' alt='logowhite' />
-          <span style={{ fontSize: 15 }}>
-            Eyecatcher
-            <br /> Photography
-          </span> */}
+      <div className="logo" onClick={()=>{window.location.href = '/'}}>
           <Typography
             fontWeight="md"
             textColor='white'

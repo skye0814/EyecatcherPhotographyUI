@@ -22,6 +22,8 @@ export default function Services(){
 
     // Product Categories fetch effect
     useEffect(() => {
+        // Change title
+        document.title = "Services | " + document.title;
         setIsLoading(true);
 
         getAsync('/api/productCategory/getAllProductCategory')
@@ -43,13 +45,12 @@ export default function Services(){
         };
     });
 
-    // Change grid column effect
     useEffect(() => {
+        // Change grid column effect
         var variableGrid = document.getElementById("variable-grid");
         if(variableGrid){
             windowWidth < 790 ? variableGrid!.className = 'ui one column grid' : variableGrid!.className = 'ui four column grid';
         }
-
         var variableSkeleton = document.getElementById("variable-skeleton");
         if(variableSkeleton){
             windowWidth < 790 ? variableSkeleton!.className = 'ui one column grid' : variableSkeleton!.className = 'ui four column grid';

@@ -48,6 +48,8 @@ export default function LoginPage() {
   }
 
   useEffect(()=>{
+      // Change title
+      document.title = document.title + " - Login";
       document.getElementById("navbar")!.style.visibility = 'hidden';
   }, []);
 

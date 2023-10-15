@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../styles/errorfetch.css';
-import { Button } from '@chakra-ui/react';
 import { AxiosError } from 'axios';
+import { Button } from '@mui/joy';
 
 interface Props {
     error: AxiosError
@@ -42,7 +42,7 @@ export default function ErrorFetch({error}: Props){
         <div className='error-content'>
             {errorImage}
             {errorMessage}
-            <Button className='primary-btn' size='lg' onClick={()=> window.location.reload()} style={{margin: 'auto'}}>Try again</Button>
+            <Button onClick={()=> window.location.reload()} style={{margin: 'auto'}}>Try again</Button>
         </div>
     );
 }
