@@ -23,7 +23,7 @@ export const registerAsync = async (user: User) => {
     }
 };
 
-export const logout = (): void => {
+export const logout = () => {
   localStorage.removeItem('ep-token');
   window.location.href = '../login';
 };

@@ -6,6 +6,16 @@
   li {
     list-style: none;
   }
+
+  /* MUI custom styling */
+  .custom-list-item:hover{
+    background-color: black;
+    color: white;
+  }
+  .custom-list-item {
+    padding: 15px 0 !important;
+    border-radius: 8px !important;
+  }
   
   /* NAVBAR STYLING STARTS */
   .navbar {
@@ -48,6 +58,10 @@
   }
   
   /* NAVBAR MENU */
+  .drawer-list-item{
+    margin-top: 40px;
+  }
+
   .menu {
     display: flex;
     gap: 1em;
@@ -103,6 +117,7 @@
   .user-info-drawer {
     display: flex;
     align-items: center;
+    padding-left: 8px;
   }
   
   

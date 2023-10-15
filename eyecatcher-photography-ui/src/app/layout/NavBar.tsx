@@ -4,36 +4,50 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { Dropdown, Menu, MenuButton } from '@mui/base';
 import { StyledListbox, StyledMenuItem } from '../common/MUIStyledComponent';
-import { Box, Divider, Drawer, List, ListItem, ListItemButton, Typography } from '@mui/joy';
+import { Box, Drawer, ListItem, Typography } from '@mui/joy';
 import { getCurrentUser, logout } from '../services/authService';
 import { Customer } from '../models/Customer';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface DrawerItem{
   icon: IconProp,
-  text: string
+  text: string,
+  location: () => void
 }
 
 export default function NavBar(){
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
   const [open, setOpen] = useState(false);
   const [customer, setCustomer] = useState<Customer | null>();
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   let drawerItems: DrawerItem[] = [
     {
       icon: 'user',
-      text: 'Profile'
+      text: 'Profile',
+      location: () => {
+        window.location.href = ''
+      }
     },
     {
       icon: 'cart-shopping',
-      text: 'My Cart'
+      text: 'My Cart',
+      location: () => {
+        window.location.href = ''
+      }
     },
     {
       icon: 'history',
-      text: 'Transaction History'
+      text: 'Transaction History',
+      location: () => {
+        window.location.href = ''
+      }
     },
     {
       icon: 'phone',
-      text: 'Support'
+      text: 'Support',
+      location: () => {
+        window.location.href = ''
+      }
     },
     
   ]
@@ -80,8 +94,20 @@ export default function NavBar(){
 
   useEffect(() => {
     // Get app user details
-    getCustomerDetails();
+    if (window.location.pathname !== '/login'){
+      getCustomerDetails();
+    }
   },[]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  },[])
 
   return(
       <nav className="navbar" id='navbar'>
@@ -158,7 +184,7 @@ export default function NavBar(){
         >
           ☰
         </label>
-        <Drawer open={open} onClose={toggleDrawer(false)}>
+        {isSmallScreen && <Drawer open={open} onClose={toggleDrawer(false)}>
           <Box
             role="presentation"
             onClick={toggleDrawer(false)}
@@ -167,37 +193,46 @@ export default function NavBar(){
           > 
             <div className='user-info-drawer'>
               <div>
-                {/* <span className="user-info-circle"></span> */}
-                <img src='/images/icons/man.png' style={{height: '45px', width: '45px'}}/>
+                <img src='/images/icons/man.png' alt='user' style={{height: '45px', width: '45px'}}/>
               </div>
               <div className="user-info" style={{display: 'block', paddingLeft: '10px'}}>
                 <div style={{fontWeight: 'bold'}}>{customer?.firstName} {customer?.lastName}</div>
                 <div style={{fontSize: '12px'}}>{customer?.applicationUser.email}</div>
               </div>
             </div>
-            <List sx={{left: '-22px', marginTop: '40px'}}>
-              {drawerItems.map((drawerItem) => (
-                <ListItem 
-                  key={drawerItem.text} 
-                  sx={{margin: '0 0 18px 0', display: 'grid', gridTemplateColumns: '50px 200px'
-                  }}
-                >
-                  <FontAwesomeIcon icon={drawerItem.icon} style={{fontSize: '20px', margin: 'auto'}} />
-                  <ListItemButton sx={{fontWeight: '600'}}>{drawerItem.text}</ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-            <List sx={{left: '-2px', bottom: '40px', position: 'absolute'}}>
+            <ul className='drawer-list-item'>
+              {drawerItems.map((drawerItem) => {
+                  return(
+                    <ListItem 
+                      key={drawerItem.text} 
+                      sx={{
+                        display: 'grid', 
+                        gridTemplateColumns: '50px 200px'
+                      }}
+                      className="custom-list-item"
+                      onClick={drawerItem.location}
+                    >
+                      <FontAwesomeIcon icon={drawerItem.icon} style={{fontSize: '20px', margin: 'auto'}} />
+                      <span style={{fontWeight: '600'}}>{drawerItem.text}</span>
+                    </ListItem>
+                  );
+                })}
+            </ul>
+            <ul className='drawer-list-item' style={{position: 'absolute', bottom: '40px'}}>
               <ListItem
-                sx={{margin: '0 0 18px 0', display: 'grid', gridTemplateColumns: '50px 200px'
+                sx={{
+                  display: 'grid', 
+                  gridTemplateColumns: '50px 200px'
                 }}
+                className="custom-list-item"
+                onClick={logout}
               >
-                  <FontAwesomeIcon icon='address-card' style={{fontSize: '20px', margin: 'auto'}} />
-                  <ListItemButton sx={{fontWeight: '600'}}>Logout</ListItemButton>
+                  <FontAwesomeIcon icon='sign-out' style={{fontSize: '20px', margin: 'auto'}} />
+                  <span style={{fontWeight: '600'}}>Logout</span>
               </ListItem>
-            </List>
+            </ul>
           </Box>
-        </Drawer>
+        </Drawer>}
       </div>
     </nav>
   );
