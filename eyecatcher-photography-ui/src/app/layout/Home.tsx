@@ -49,7 +49,37 @@ export default function Home(){
                 </div>
             </div>
             <div className='container'>
-
+                <div className='founder-message-box'>
+                    <img className='founder-image founder-message-box-element' src='/images/founder-image.jpg' />
+                    <div className='founder-message-div founder-message-box-element'>
+                        <span className='founder-message-title'>
+                            <Typography className='intro-quote'>
+                            I am Jes Sta Isabel-Pacios  <br/>
+                            <span 
+                                className='intro-quote' 
+                                style={{
+                                    textDecoration: 'underline',
+                                    textUnderlineOffset: '10px',
+                                    textDecorationThickness: '4px'
+                                }}
+                            >
+                                found
+                            </span>
+                            er of Eyecatcher Photography
+                            </Typography>
+                        </span>
+                        <span className='founder-message'>
+                            I am Jes Sta Isabel-Pacios, the founder of Eyecatcher Photography. 
+                            I am thrilled to welcome you to our world of creativity, visual storytelling, 
+                            and the art of capturing moments that last a lifetime.
+                            <br/><br/>
+                            Photography has been my passion for as long as I can remember. 
+                            It's not just about taking pictures; it's about preserving emotions, experiences, and memories. 
+                            Every photograph we create at Eyecatcher is a piece of our heart and soul, 
+                            reflecting the unique beauty and essence of every moment.
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     );
