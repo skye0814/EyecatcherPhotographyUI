@@ -68,7 +68,7 @@ export default function Services(){
                 {loopArraySkeleton.map((_,index) => {
                     return(
                     <Grid.Column key={index}>
-                        <AspectRatio>
+                        <AspectRatio className='customMUIAspectRatio'>
                             <Skeleton />
                         </AspectRatio>
                     </Grid.Column>

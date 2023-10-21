@@ -1,5 +1,5 @@
 /* override container style from styles.css */
-.MuiAspectRatio-content{
+.customMUIAspectRatio{
     height: 503px !important;
 }
 

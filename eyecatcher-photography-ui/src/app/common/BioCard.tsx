@@ -18,6 +18,7 @@ export default function BioCard() {
           width: 600,
           maxWidth: '100%',
           boxShadow: 'lg',
+          margin: 'auto',
         }}
         orientation='horizontal'
         size='md'
