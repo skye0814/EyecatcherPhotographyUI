@@ -43,7 +43,7 @@
     align-items: center;
     position: absolute;
     right: 5%;
-    gap: 10px;
+    gap: 29px;
   }
   
   .nav-links {
@@ -74,7 +74,14 @@
   
   /* NAVBAR MENU */
   .drawer-list-item{
-    margin-top: 40px;
+  }
+
+  .drawer-list-title {
+    text-transform: uppercase;
+    font-family: 'General Sans', sans-serif;
+    font-weight: 600;
+    color: lightgray;
+    padding: 40px 0 10px 15px;
   }
 
   .menu {

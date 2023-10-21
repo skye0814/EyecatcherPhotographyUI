@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { Dropdown, Menu, MenuButton } from '@mui/base';
 import { StyledListbox, StyledMenuItem } from '../common/MUIStyledComponent';
-import { Box, Drawer, IconButton, ListItem, SvgIcon, Typography } from '@mui/joy';
+import { Box, Divider, Drawer, IconButton, ListItem, SvgIcon, Typography } from '@mui/joy';
 import { getCurrentUser, logout } from '../services/authService';
 import { Customer } from '../models/Customer';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
@@ -21,10 +21,41 @@ export default function NavBar(){
   const [open, setOpen] = useState(false);
   const [customer, setCustomer] = useState<Customer | null>();
   const [showUserDropdown, setShowUserDropdown] = useState(false);
-  let drawerItems: DrawerItem[] = [
+  let drawerItemsAccount: DrawerItem[] = [
     {
       icon: 'user',
       text: 'Profile',
+      location: () => {
+        window.location.href = ''
+      }
+    },
+    {
+      icon: 'cart-shopping',
+      text: 'My Cart',
+      location: () => {
+        window.location.href = ''
+      }
+    },
+    {
+      icon: 'history',
+      text: 'Transaction History',
+      location: () => {
+        window.location.href = ''
+      }
+    },
+    // {
+    //   icon: 'phone',
+    //   text: 'Support',
+    //   location: () => {
+    //     window.location.href = ''
+    //   }
+    // }
+  ];
+
+  let drawerItemsNavigation: DrawerItem[] = [
+    {
+      icon: 'user',
+      text: 'Services',
       location: () => {
         window.location.href = ''
       }
@@ -49,8 +80,7 @@ export default function NavBar(){
       location: () => {
         window.location.href = ''
       }
-    },
-    
+    }
   ]
 
   const getCustomerDetails = async () => {
@@ -256,8 +286,12 @@ export default function NavBar(){
                 <div style={{fontSize: '12px'}}>{customer?.applicationUser.email}</div>
               </div>
             </div>
+
+            <Typography className='drawer-list-title'>
+              Account
+            </Typography>
             <ul className='drawer-list-item'>
-              {drawerItems.map((drawerItem) => {
+              {drawerItemsAccount.map((drawerItem) => {
                   return(
                     <ListItem 
                       key={drawerItem.text}
@@ -275,6 +309,10 @@ export default function NavBar(){
                   );
                 })}
             </ul>
+            <Divider sx={{margin: '40px 15px 0px 15px'}}/>
+            <Typography className='drawer-list-title'>
+              Navigation
+            </Typography>
             <ul className='drawer-list-item' style={{position: 'absolute', bottom: '40px'}}>
               <ListItem
                 className="custom-list-item"
