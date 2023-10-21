@@ -1,0 +1,56 @@
+.intro-quote {
+    font-family: 'General Sans', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.colored-font {
+  color: var(--blue);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    overflow: hidden;
+}
+
+.grid-item {
+    position: relative;
+}
+
+.item1 {
+    margin: auto 50px auto 15%;
+    display: block;
+    transition: margin-left 0.5s ease-in-out;
+}
+@media(min-width: 1800px) {
+    .item1 {
+        margin-left: 65%;
+    }
+}
+
+.item1 .MuiTypography-root {
+    margin-bottom: 40px;
+}
+
+/* Images */
+.intro-image1, .intro-image2 {
+    max-width: 800px;
+    height: auto; 
+    display: block;
+}
+
+.custom-MUIDivider{
+    margin: unset !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

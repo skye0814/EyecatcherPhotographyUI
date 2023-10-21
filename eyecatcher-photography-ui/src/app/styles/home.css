@@ -18,9 +18,13 @@
 }
 
 .intro-quote {
-    font-family: Consolas;
+    font-family: 'General Sans', sans-serif;
+    font-weight: 600;
     font-size: 25px;
-    text-transform: uppercase;
+}
+
+.colored-font {
+  color: var(--blue);
 }
 
 
@@ -101,16 +105,14 @@
 
   /* Button */
   .intro-button {
-    border: 5px solid black;
-    padding: 20px;
-    text-transform: uppercase;
-    font-family: 'Inter';
+    padding: 15px;
+    font-family: 'General Sans', sans-serif;
     font-weight: bolder;
-    letter-spacing: 1.5px;
     font-size: 16px;
     position: absolute;
     left: 50px;
-    margin-top: 90px;
+    margin-top: 70px;
+    background: var(--blue);
   }
 
   .intro-button:hover {
