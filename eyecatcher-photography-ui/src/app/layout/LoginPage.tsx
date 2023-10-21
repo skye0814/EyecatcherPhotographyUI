@@ -25,10 +25,6 @@ interface SignInFormElement extends HTMLFormElement {
   readonly elements: FormElements;
 }
 
-
-/**
- * This template uses [`Inter`](https://fonts.google.com/specimen/Inter?query=inter) font.
- */
 export default function LoginPage() {
 
   const handleLogin = (data: UserRequest) => {
