@@ -17,6 +17,7 @@
     border-radius: 8px !important;
     display: grid !important;
     grid-template-columns: 50px 200px;
+    transition: background-color 0.3s ease;
   }
   
   /* NAVBAR STYLING STARTS */
@@ -80,7 +81,7 @@
     text-transform: uppercase;
     font-family: 'General Sans', sans-serif;
     font-weight: 600;
-    color: lightgray;
+    color: gray;
     padding: 40px 0 10px 15px;
   }
 

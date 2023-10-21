@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { Dropdown, Menu, MenuButton } from '@mui/base';
-import { StyledListbox, StyledMenuItem } from '../common/MUIStyledComponent';
-import { Box, Divider, Drawer, IconButton, ListItem, SvgIcon, Typography } from '@mui/joy';
+import { AspectRatio, Avatar, Box, Card, CardContent, Chip, Divider, Drawer, IconButton, ListItem, SvgIcon, Typography } from '@mui/joy';
 import { getCurrentUser, logout } from '../services/authService';
 import { Customer } from '../models/Customer';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
@@ -54,22 +52,8 @@ export default function NavBar(){
 
   let drawerItemsNavigation: DrawerItem[] = [
     {
-      icon: 'user',
+      icon: 'camera',
       text: 'Services',
-      location: () => {
-        window.location.href = ''
-      }
-    },
-    {
-      icon: 'cart-shopping',
-      text: 'My Cart',
-      location: () => {
-        window.location.href = ''
-      }
-    },
-    {
-      icon: 'history',
-      text: 'Transaction History',
       location: () => {
         window.location.href = ''
       }
@@ -277,15 +261,24 @@ export default function NavBar(){
               margin: '50px 20px 20px 20px'
            }}
           > 
-            <div className='user-info-drawer'>
-              <div>
-                <img src='/images/icons/man.png' alt='user' style={{height: '45px', width: '45px'}}/>
-              </div>
-              <div className="user-info" style={{display: 'block', paddingLeft: '10px'}}>
-                <div style={{fontWeight: 'bold'}}>{customer?.firstName} {customer?.lastName}</div>
-                <div style={{fontSize: '12px'}}>{customer?.applicationUser.email}</div>
-              </div>
-            </div>
+            <Card
+              variant="outlined"
+              orientation="horizontal"
+              sx={{
+                borderRadius: '35px',
+                '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
+              }}
+            >
+              <Avatar src='/images/icons/man.png' alt='user' sx={{margin: 'auto'}}/>
+              <CardContent>
+                <Typography fontSize='md' fontWeight='bold' id="card-description">
+                  {customer?.firstName} {customer?.lastName}
+                </Typography>
+                <Typography level="title-sm" id="card-description">
+                  {customer?.applicationUser.email}
+                </Typography>
+              </CardContent>
+            </Card>
 
             <Typography className='drawer-list-title'>
               Account
@@ -313,7 +306,26 @@ export default function NavBar(){
             <Typography className='drawer-list-title'>
               Navigation
             </Typography>
-            <ul className='drawer-list-item' style={{position: 'absolute', bottom: '40px'}}>
+            <ul className='drawer-list-item'>
+              {drawerItemsNavigation.map((drawerItem) => {
+                  return(
+                    <ListItem 
+                      key={drawerItem.text}
+                      className="custom-list-item"
+                      onClick={drawerItem.location}
+                      sx={{
+                        '&:hover': {
+                          cursor: 'pointer'
+                        }
+                      }}
+                    >
+                      <FontAwesomeIcon icon={drawerItem.icon} style={{fontSize: '20px', margin: 'auto'}} />
+                      <span style={{fontWeight: '600'}}>{drawerItem.text}</span>
+                    </ListItem>
+                  );
+                })}
+            </ul>
+            <ul className='drawer-list-item' style={{position: 'absolute', bottom: '40px', width: '90%'}}>
               <ListItem
                 className="custom-list-item"
                 onClick={logout}
@@ -323,7 +335,7 @@ export default function NavBar(){
                   }
                 }}
               >
-                  <FontAwesomeIcon icon='sign-out' style={{fontSize: '20px', margin: 'auto', width: '90%'}} />
+                  <FontAwesomeIcon icon='sign-out' style={{fontSize: '20px', margin: 'auto'}} />
                   <span style={{fontWeight: '600'}}>Logout</span>
               </ListItem>
             </ul>
