@@ -42,8 +42,6 @@ export const getCurrentUser = async (): Promise<AxiosResponse | null>=> {
       catch (error) {
         result = null;
       }
-  } else {
-      logout();
   }
 
   return result;

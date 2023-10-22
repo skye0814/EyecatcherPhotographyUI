@@ -35,7 +35,7 @@ export default function Home(){
                             Explore our budget-friendly pricing options to bring your visions to life.
                         </Typography>
                         <Button 
-                            className='intro-button' 
+                            className='intro-button primary-btn' 
                             endDecorator={<FontAwesomeIcon icon='chevron-right' />}
                         >
                             Learn more
@@ -81,7 +81,8 @@ export default function Home(){
                             <Typography sx={{ 
                                 textAlign: 'justify', 
                                 fontFamily: 'General Sans',
-                                width: '85%'
+                                width: '85%',
+                                color: 'black'
                                 }}
                             >
                                     I am Jes Sta Isabel-Pacios, the founder of Eyecatcher Photography. 

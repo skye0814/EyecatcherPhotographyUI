@@ -15,6 +15,11 @@ export default function RequireAuth({ children }: Props){
         async function getUserAsync() {
             const response: AxiosResponse | null = await getCurrentUser();
             if (response?.status === undefined || response?.status === 200) {
+                if (!response){
+                    setIsAuthenticated(false);
+                    logout();
+                }
+
                 setIsAuthenticated(true);
             }
             else {
