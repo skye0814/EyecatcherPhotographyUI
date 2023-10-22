@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { AspectRatio, Avatar, Box, Card, CardContent, Chip, Divider, Drawer, IconButton, ListItem, SvgIcon, Typography } from '@mui/joy';
+import { AspectRatio, Avatar, Box, Button, Card, CardContent, Chip, Divider, Drawer, IconButton, ListItem, SvgIcon, Typography } from '@mui/joy';
 import { getCurrentUser, logout } from '../services/authService';
 import { Customer } from '../models/Customer';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
@@ -14,6 +14,7 @@ interface DrawerItem{
 }
 
 export default function NavBar(){
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -40,14 +41,7 @@ export default function NavBar(){
       location: () => {
         window.location.href = ''
       }
-    },
-    // {
-    //   icon: 'phone',
-    //   text: 'Support',
-    //   location: () => {
-    //     window.location.href = ''
-    //   }
-    // }
+    }
   ];
 
   let drawerItemsNavigation: DrawerItem[] = [
@@ -70,7 +64,14 @@ export default function NavBar(){
   const getCustomerDetails = async () => {
       try{
         const response = await getCurrentUser();
-        setCustomer(response?.data);
+        if (response?.data !== undefined){
+          setCustomer(response?.data);
+          setIsUserLoggedIn(true);
+        }
+        else {
+          setCustomer(response?.data);
+          setIsUserLoggedIn(false);
+        }
       }
       catch(error){
         console.log(error);
@@ -126,7 +127,7 @@ export default function NavBar(){
 
   useEffect(() => {
     // Get app user details
-    if (window.location.pathname !== '/login'){
+    if (window.location.pathname !== '/login') {
       getCustomerDetails();
     }
   },[]);
@@ -177,29 +178,6 @@ export default function NavBar(){
       </ul>
 
       <div className="right-nav">
-        {/* <div className="user-picture-div">
-          <Dropdown>
-            <MenuButton>
-              <FontAwesomeIcon className="user-picture" icon="user-circle" onClick={toggleUserDropdown}></FontAwesomeIcon>
-            </MenuButton>
-            <Menu 
-              slots={{ listbox: StyledListbox }} 
-              style={{ zIndex: "999"}}
-            >
-              <StyledMenuItem>
-                Profile
-              </StyledMenuItem>
-              <StyledMenuItem>
-                Settings
-              </StyledMenuItem>
-              <StyledMenuItem onClick={() => logout()}>
-                Log out
-              </StyledMenuItem>
-            </Menu>
-          </Dropdown>
-
-        </div> */}
-
         {!isSmallScreen && 
         <>
           <IconButton size="sm" variant="plain" color="neutral" onClick={() => {window.open('https://www.facebook.com/eyecatchyou2020', '_blank');}}>
@@ -258,9 +236,40 @@ export default function NavBar(){
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
             sx={{
-              margin: '50px 20px 20px 20px'
+              margin: '50px 20px 20px 20px',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%',
+              display: isUserLoggedIn ? 'unset' : 'flex',
            }}
           > 
+
+          {!isUserLoggedIn &&
+          <>
+            <div style={{margin: 'auto', display: 'grid', rowGap: '10px'}}>
+              <Typography 
+                fontFamily='General Sans'
+                sx={{
+                  color: 'black',
+                  fontSize: '15px'
+                }}
+              >
+                You are not logged in
+              </Typography>
+              <Button
+                className='primary-btn'
+                onClick={()=> window.location.href = '/login'} 
+                style={{
+                  margin: 'auto'
+              }}
+              >
+                Sign In
+              </Button>
+            </div>
+          </>}
+            
+          {isUserLoggedIn &&
+          <>
             <Card
               variant="outlined"
               orientation="horizontal"
@@ -339,6 +348,7 @@ export default function NavBar(){
                   <span style={{fontWeight: '600'}}>Logout</span>
               </ListItem>
             </ul>
+          </>}
           </Box>
         </Drawer>
       </div>

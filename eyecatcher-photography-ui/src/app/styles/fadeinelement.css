@@ -1,7 +1,7 @@
 .fade-in-element {
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 2s ease, transform 2s ease;
+    transform: translateY(250px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
   }
   
   .fade-in-element.visible {
