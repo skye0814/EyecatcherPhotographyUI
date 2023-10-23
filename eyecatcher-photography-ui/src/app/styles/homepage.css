@@ -54,3 +54,58 @@
         transform: translateY(0);
     }
 }
+
+
+/* Create a basic Masonry layout */
+.masonry {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .masonry-column {
+    flex: 1;
+    padding: 5px; /* Add spacing between columns */
+    box-sizing: border-box;
+  }
+  
+  .masonry-column img {
+    width: 100%;
+    display: block;
+    border: 1px solid #ccc;
+    margin-bottom: 10px; /* Add spacing between images */
+  }
+
+  .masonry .masonry-column:nth-child(1) img:nth-child(1){
+    border-radius: 10px 0 0 0;
+  }
+
+  .masonry .masonry-column:nth-child(1) img:nth-child(3){
+    border-radius: 0 0 0 10px;
+  }
+
+  .masonry .masonry-column:nth-child(3) img:nth-child(1){
+    border-radius: 0 10px 0 0;
+  }
+
+  .masonry .masonry-column:nth-child(3) img:nth-child(3){
+    border-radius: 0 0 10px 0;
+  }
+
+
+
+
+  .founder-container {
+    position: relative;
+  }
+  
+  .background-div {
+    position: absolute;
+    top: 100%; /* Place it below the Card */
+    left: 0;
+    width: 100%; /* Inherit width from container */
+    height: 500px;
+    background-color: red; /* Background color */
+    z-index: -1; /* Place it behind the Card */
+  }

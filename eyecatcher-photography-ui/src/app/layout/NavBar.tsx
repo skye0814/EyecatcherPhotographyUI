@@ -25,21 +25,21 @@ export default function NavBar(){
       icon: 'user',
       text: 'Profile',
       location: () => {
-        window.location.href = ''
+        window.location.href = '/profile'
       }
     },
     {
       icon: 'cart-shopping',
       text: 'My Cart',
       location: () => {
-        window.location.href = ''
+        window.location.href = '/my-cart'
       }
     },
     {
       icon: 'history',
       text: 'Transaction History',
       location: () => {
-        window.location.href = ''
+        window.location.href = '/transaction-history'
       }
     }
   ];
@@ -49,14 +49,14 @@ export default function NavBar(){
       icon: 'camera',
       text: 'Services',
       location: () => {
-        window.location.href = ''
+        window.location.href = '/services'
       }
     },
     {
       icon: 'phone',
       text: 'Support',
       location: () => {
-        window.location.href = ''
+        window.location.href = '/support'
       }
     }
   ]
@@ -65,13 +65,13 @@ export default function NavBar(){
       try{
         const response = await getCurrentUser();
         if (response?.data !== undefined){
-          setCustomer(response?.data);
           setIsUserLoggedIn(true);
         }
         else {
-          setCustomer(response?.data);
           setIsUserLoggedIn(false);
         }
+
+        setCustomer(response?.data);
       }
       catch(error){
         console.log(error);
