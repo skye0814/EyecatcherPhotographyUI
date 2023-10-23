@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AspectRatio, Button, Card, CardContent, Chip, Divider, Link } from '@mui/joy';
 import BioCard from '../common/BioCard';
 // import '../styles/home.css'
@@ -52,10 +52,12 @@ export default function Home(){
             <div className='container' style={{marginTop: '50px'}}>
                 <FadeInElement>
                     <Card
+                        className='founder-message'
                         variant="soft"
                         orientation="horizontal"
                         size='lg'
                         sx={{
+                            marginBottom: '50px !important',
                             transition: 'fade 1s ease',
                             margin: 'auto',
                             width: '80%',
@@ -101,6 +103,40 @@ export default function Home(){
                         </CardContent>
                     </Card>
                 </FadeInElement>
+
+                <Divider className='custom-MUIDivider' sx={{width: '300%', left: -1000}}/>
+
+                <div style={{margin: '50px 0 20px 0'}}>
+                    <FadeInElement>
+                        <Typography 
+                            className='intro-quote colored-font centered-horizontal'
+                            sx={{
+                                marginBottom: '30px !important'
+                            }}
+                        >
+                            Our Recent Work
+                        </Typography>
+                    </FadeInElement>
+                    <FadeInElement>
+                        <div className="masonry">
+                            <div className="masonry-column">
+                                <img src={`/images/gallery/1.jpg`} alt={`Image 1`} />
+                                <img src={`/images/gallery/2.jpg`} alt={`Image 1`} />
+                                <img src={`/images/gallery/7.jpg`} alt={`Image 1`} />
+                            </div>
+                            <div className="masonry-column">
+                                <img src={`/images/gallery/3.jpg`} alt={`Image 1`} />
+                                <img src={`/images/gallery/4.jpg`} alt={`Image 1`} />
+                                <img src={`/images/gallery/8.jpg`} alt={`Image 1`} />
+                            </div>
+                            <div className="masonry-column">
+                                <img src={`/images/gallery/5.jpg`} alt={`Image 1`} />
+                                <img src={`/images/gallery/6.jpg`} alt={`Image 1`} />
+                                <img src={`/images/gallery/9.jpg`} alt={`Image 1`} />
+                            </div>
+                        </div>
+                    </FadeInElement>
+                </div>
             </div>
             
         </div>
