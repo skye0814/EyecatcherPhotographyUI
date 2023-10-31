@@ -13,7 +13,7 @@ import Services from './Services';
 import Home from './Home';
 import LoginPage from './LoginPage';
 import Products from './products/Products';
-import { CssVarsProvider } from '@mui/joy';
+import { CssVarsProvider, StyledEngineProvider } from '@mui/joy';
 import createTheme from '@mui/material/styles/createTheme';
 import RequireAuth from '../common/RequireAuth';
 import PageNotFound from './PageNotFound';
@@ -22,6 +22,7 @@ function App() {
   const theme = createTheme();
   
   return (
+    <StyledEngineProvider injectFirst>
     <CssVarsProvider>
       <div className="App">
         <NavBar />
@@ -49,6 +50,7 @@ function App() {
         {/* <FooterBar /> */}
       </div>
     </CssVarsProvider>
+    </StyledEngineProvider>
   );
 }
 

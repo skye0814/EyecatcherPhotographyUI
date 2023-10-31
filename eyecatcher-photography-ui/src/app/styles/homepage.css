@@ -56,56 +56,97 @@
 }
 
 
-/* Create a basic Masonry layout */
-.masonry {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
+@media (min-width: 768px) {
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; 
   }
-  
-  .masonry-column {
-    flex: 1;
-    padding: 5px; /* Add spacing between columns */
-    box-sizing: border-box;
+  .blue-section-container {
+    margin: 0 7%;
+    display: grid;
+    grid-template-columns: repeat(2, 30% 70%);
   }
-  
-  .masonry-column img {
-    width: 100%;
-    display: block;
-    border: 1px solid #ccc;
-    margin-bottom: 10px; /* Add spacing between images */
-  }
+}
 
-  .masonry .masonry-column:nth-child(1) img:nth-child(1){
-    border-radius: 10px 0 0 0;
+@media (max-width: 767px) {
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
   }
-
-  .masonry .masonry-column:nth-child(1) img:nth-child(3){
-    border-radius: 0 0 0 10px;
+  .blue-section-container {
+    margin: 0 7%;
+    display: grid;
+    grid-template-columns: repeat(1, 100%);
   }
-
-  .masonry .masonry-column:nth-child(3) img:nth-child(1){
-    border-radius: 0 10px 0 0;
+  .gallery-wrap {
+    flex-direction: column !important;
   }
+}
 
-  .masonry .masonry-column:nth-child(3) img:nth-child(3){
-    border-radius: 0 0 10px 0;
-  }
+.blue-section {
+  background-color: var(--blue);
+  height: 500px;
+}
+
+.subcontainer {
+  margin: 0 7%;
+  position: relative;
+}
+
+.custom-accordion-details {
+  margin: auto;
+  padding: 30px 10px;
+  text-align: justify;
+  text-justify: inter-word;
+}
 
 
 
+.custom-accordion-summary button div, 
+.custom-accordion-summary button span:nth-child(2) {
+  font-weight: 500;
+  font-size: large;
+}
 
-  .founder-container {
-    position: relative;
-  }
-  
-  .background-div {
-    position: absolute;
-    top: 100%; /* Place it below the Card */
-    left: 0;
-    width: 100%; /* Inherit width from container */
-    height: 500px;
-    background-color: red; /* Background color */
-    z-index: -1; /* Place it behind the Card */
-  }
+.gallery-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 70vh;
+}
+
+.item {
+  flex: 1;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+  transition: flex 0.8s ease;
+}
+.item:hover {
+  flex: 7;
+}
+
+.item-1 {
+  background-image: url("../../../public/images/gallery/8.jpg");
+}
+
+.item-2 {
+  background-image: url("../../../public/images/gallery/9.jpg");
+}
+
+.item-3 {
+  background-image: url("../../../public/images/gallery/1.jpg");
+}
+
+.item-4 {
+  background-image: url("../../../public/images/gallery/5.jpg");
+}
+
+.item-5 {
+  background-image: url("../../../public/images/gallery/3.jpg");
+}
+
+
