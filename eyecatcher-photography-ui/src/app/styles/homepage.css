@@ -12,6 +12,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     overflow: hidden;
+    position: relative;
 }
 
 .grid-item {
@@ -83,6 +84,27 @@
   .gallery-wrap {
     flex-direction: column !important;
   }
+
+  .grid-container {
+    grid-template-columns: 100% !important;
+    height: 500px;
+  }
+  .item2 {
+    position: absolute;
+    z-index: -999;
+    opacity: 0.5;
+  }
+
+  .intro-message {
+    text-justify: inter-word;
+    text-align: justify;
+    text-shadow: 1px 0px 4px rgba(255, 255, 255, 1);
+    color: black;
+  }
+
+  .primary-btn {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+  }
 }
 
 .blue-section {
@@ -101,9 +123,6 @@
   text-align: justify;
   text-justify: inter-word;
 }
-
-
-
 .custom-accordion-summary button div, 
 .custom-accordion-summary button span:nth-child(2) {
   font-weight: 500;
@@ -150,3 +169,33 @@
 }
 
 
+@media (max-width: 768px) {
+  .leaf1 {
+    left: -50% !important;
+  }
+
+  .leaf2 {
+    right: -50% !important;
+  }
+}
+
+
+.leaf {
+  position: absolute;
+  z-index: -999;
+  height: 300px;
+  opacity: 0.5;
+}
+
+.leaf1 {
+  left: -15%;
+  top: -10%;
+  transition: left 0.5s;
+}
+
+.leaf2 {
+  bottom: -10%;
+  rotate: 180deg;
+  right: -15%;
+  transition: right 0.5s;
+}
