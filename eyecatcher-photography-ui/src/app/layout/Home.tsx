@@ -34,7 +34,7 @@ export default function Home(){
 
     return(
         <>
-        <div style={{marginTop: '80px'}}>
+        <div style={{marginTop: '80px', overflow: 'hidden'}}>
             <div className='grid-container'>
                 <div className='grid-item item1'>
                     <div>
@@ -52,7 +52,7 @@ export default function Home(){
                                 <strong className='intro-quote colored-font'>en time</strong>
                             </span>
                         </Typography>
-                        <Typography>
+                        <Typography className='intro-message'>
                             We believe that remarkable photography should be accessible to all
                             whether it's a special event, a family portrait, or a personal photoshoot, 
                             our photography services are customized to meet your unique needs.
@@ -74,13 +74,16 @@ export default function Home(){
             <Divider className='custom-MUIDivider'/>
 
             <div className='subcontainer' style={{marginTop: '50px', transition: 'all 0.3 ease'}}>
+                <img className='leaf leaf1' alt='leaf' src='/images/icons/leaf.png'/>
+                <img className='leaf leaf2' alt='leaf' src='/images/icons/leaf.png'/>
                 <Typography 
                     className='intro-quote centered-horizontal colored-font'
                     sx={{
                         padding: '10px 0px !important',
                         wordWrap: 'break-word',
                         width: '200px',
-                        margin: 'auto'
+                        margin: 'auto',
+                        textAlign: 'center'
                     }}
                 >
                     We offer several services for you
@@ -102,6 +105,7 @@ export default function Home(){
                 <AccordionGroup
                     size='lg'
                     sx={{
+                        paddingTop: '50px',
                         transition: '0.2s ease',
                         margin: 'auto',
                         maxWidth: 600,
