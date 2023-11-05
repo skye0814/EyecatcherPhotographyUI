@@ -76,6 +76,7 @@ export default function Home(){
             <div className='subcontainer' style={{marginTop: '50px', transition: 'all 0.3 ease'}}>
                 <img className='leaf leaf1' alt='leaf' src='/images/icons/leaf.png'/>
                 <img className='leaf leaf2' alt='leaf' src='/images/icons/leaf.png'/>
+                <FadeInElement>
                 <Typography 
                     className='intro-quote centered-horizontal colored-font'
                     sx={{
@@ -88,6 +89,8 @@ export default function Home(){
                 >
                     We offer several services for you
                 </Typography>
+                </FadeInElement>
+                <FadeInElement>
                 <Typography
                     className='centered-horizontal'
                     sx={{
@@ -101,11 +104,13 @@ export default function Home(){
                     We provide a multitude of photography services tailored to capture the essence 
                     and beauty of your special moments
                 </Typography>
+                </FadeInElement>
 
                 <AccordionGroup
                     size='lg'
                     sx={{
                         paddingTop: '50px',
+                        paddingBottom: '20px',
                         transition: '0.2s ease',
                         margin: 'auto',
                         maxWidth: 600,
@@ -134,6 +139,7 @@ export default function Home(){
                         },
                     }}
                 >
+                    <FadeInElement>
                     <Accordion onMouseEnter={() => handleAccordionEnter(1)}
                                 onMouseLeave={handleAccordionLeave} expanded={expandedAccordion === 1}>
                         <AccordionSummary className='custom-accordion-summary'><div>01</div><span>Birthday Services</span></AccordionSummary>
@@ -144,6 +150,8 @@ export default function Home(){
                         we're here to make your birthday celebration truly shine.
                         </AccordionDetails>
                     </Accordion>
+                    </FadeInElement>
+                    <FadeInElement>
                     <Accordion  onMouseEnter={() => handleAccordionEnter(2)}
                                 onMouseLeave={handleAccordionLeave} expanded={expandedAccordion === 2}>
                         <AccordionSummary className='custom-accordion-summary'><div>02</div><span>Christening Services</span></AccordionSummary>
@@ -153,6 +161,8 @@ export default function Home(){
                         We pride ourselves on creating timeless and heartwarming photos that you'll cherish for generations to come.
                         </AccordionDetails>
                     </Accordion>
+                    </FadeInElement>
+                    <FadeInElement>
                     <Accordion onMouseEnter={() => handleAccordionEnter(3)}
                                 onMouseLeave={handleAccordionLeave} expanded={expandedAccordion === 3}>
                         <AccordionSummary className='custom-accordion-summary'><div>03</div><span>Wedding Services</span></AccordionSummary>
@@ -162,6 +172,8 @@ export default function Home(){
                         stunning, creative, and storytelling images that will tell your unique love story.
                         </AccordionDetails>
                     </Accordion>
+                    </FadeInElement>
+                    <FadeInElement>
                     <Accordion onMouseEnter={() => handleAccordionEnter(4)}
                                 onMouseLeave={handleAccordionLeave} expanded={expandedAccordion === 4}>
                         <AccordionSummary className='custom-accordion-summary'><div>04</div><span>Other Services</span></AccordionSummary>
@@ -171,10 +183,110 @@ export default function Home(){
                         photographers are ready to provide you with exceptional quality and artistic expertise.
                         </AccordionDetails>
                     </Accordion>
-                </AccordionGroup> 
+                    </FadeInElement>
+                </AccordionGroup>
             </div>
 
+            <Divider sx={{marginTop: '30px !important'}}/> 
+
             <div className='blue-section'>
+                <div className='blue-section-container'>
+                    <div style={{margin: 'auto'}}>
+                        <Typography 
+                            className='intro-quote'
+                            sx={{
+                                padding: '10px 0px !important',
+                                wordWrap: 'break-word',
+                                width: '200px',
+                                margin: 'auto',
+                                textAlign: 'center',
+                                color: 'white'
+                            }}
+                        >
+                            Our Statistics
+                        </Typography>
+                        <Typography
+                            className=''
+                            sx={{
+                                margin: 'auto',
+                                fontWeight: 400,
+                                width: isSmallScreen ? '80%' : '400px',
+                                textAlign: 'center',
+                                paddingBottom: '30px',
+                                color: 'white',
+                                paddingTop: '25px'
+                            }}
+                        >
+                            We are grateful for the support from photography enthusiasts like you who 
+                            appreciate our artistry. You inspire us to continue our creative journey.
+                            We have shared thousand of photographs and stories with you, each capturing a unique moment 
+                            in time. We look forward to sharing many more memorable moments with you in the future.
+                        </Typography>
+                    </div>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(2, 50%)',
+                        gridTemplateRows: 'repeat(2, 50%)',
+                        height: '300px',
+                    }}>
+                        <div className='milestone-card'>
+                            <Typography className='milestone-numeric'>5.0</Typography>
+                            <Typography className='milestone-desc'>Rating</Typography>
+                        </div>
+                        <div className='milestone-card'>
+                            <Typography className='milestone-numeric'>13K+</Typography>
+                            <Typography className='milestone-desc'>Likes</Typography>
+                        </div>
+                        <div className='milestone-card'>
+                            <Typography className='milestone-numeric'>15K+</Typography>
+                            <Typography className='milestone-desc'>Followers</Typography>
+                        </div>
+                        <div className='milestone-card'>
+                            <Typography className='milestone-numeric'>300+</Typography>
+                            <Typography className='milestone-desc'>Reviews</Typography>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className='subcontainer'>
+                <div style={{margin: '50px 0 20px 0'}}>
+                    <FadeInElement>
+                        <Typography 
+                            className='intro-quote colored-font centered-horizontal'
+                            sx={{
+                                marginBottom: '10px !important'
+                            }}
+                        >
+                            Our Recent Work
+                        </Typography>
+                        <Typography
+                            className='centered-horizontal'
+                            sx={{
+                                margin: 'auto',
+                                fontWeight: 500,
+                                width: isSmallScreen ? '80%' : '400px',
+                                textAlign: 'center',
+                                padding: isSmallScreen ? '0px 10% 30px 10%' : '0px 20% 30px 20%'
+                            }}
+                        >
+                            We showcase the latest additions to our photographic portfolio, offering a glimpse into our ongoing creative journey. 
+                            These images represent the culmination of our continued dedication to the art of photography, capturing moments that 
+                            have moved and inspired us.
+                        </Typography>
+                        <div className="gallery-wrap">
+                            <div className="item item-1"></div>
+                            <div className="item item-2"></div>
+                            <div className="item item-3"></div>
+                            <div className="item item-4"></div>
+                            <div className="item item-5"></div>
+                        </div>
+                    </FadeInElement>
+                </div>
+            </div>
+                
+                
+            {/* <div className='blue-section'>
                 <FadeInElement>
                     <Typography 
                         className='intro-quote centered-horizontal'
@@ -216,7 +328,7 @@ export default function Home(){
                             Our commitment to excellence and the relentless pursuit of creativity is at the heart of everything we do.
                     </Typography>
                 </div>
-            </div>
+            </div> */}
             
             <div className='container' style={{marginTop: '50px'}}>
                 {/* <FadeInElement>
@@ -273,27 +385,8 @@ export default function Home(){
                     </Card>
                 </FadeInElement> */}
 
-                <Divider className='custom-MUIDivider' sx={{width: '300%', left: -1000}}/>
 
-                <div style={{margin: '50px 0 20px 0'}}>
-                    <FadeInElement>
-                        <Typography 
-                            className='intro-quote colored-font centered-horizontal'
-                            sx={{
-                                marginBottom: '30px !important'
-                            }}
-                        >
-                            Our Recent Work
-                        </Typography>
-                        <div className="gallery-wrap">
-                            <div className="item item-1"></div>
-                            <div className="item item-2"></div>
-                            <div className="item item-3"></div>
-                            <div className="item item-4"></div>
-                            <div className="item item-5"></div>
-                        </div>
-                    </FadeInElement>
-                </div>
+                
             </div>
             
         </div>

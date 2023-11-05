@@ -66,7 +66,8 @@
   .blue-section-container {
     margin: 0 7%;
     display: grid;
-    grid-template-columns: repeat(2, 30% 70%);
+    grid-template-columns: repeat(2, 50% 50%);
+    height: 100%;
   }
 }
 
@@ -75,6 +76,9 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
+  }
+  .blue-section {
+    padding: 30px 0 30px !important; 
   }
   .blue-section-container {
     margin: 0 7%;
@@ -105,11 +109,37 @@
   .primary-btn {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
   }
+
+  .milestone-card {
+    margin: 20px 20px !important;
+  }
 }
 
 .blue-section {
-  background-color: var(--blue);
-  height: 500px;
+  background-color: #164863;
+  padding: 100px 0 100px 0;
+}
+
+.milestone-card {
+  border-radius: 25px;
+  margin: 20px 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #427D9D;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.milestone-numeric {
+  color: white;
+  font-size: 40px;
+  font-weight: 600;
+
+}
+
+.milestone-desc {
+  color: white;
 }
 
 .subcontainer {
@@ -126,7 +156,6 @@
 .custom-accordion-summary button div, 
 .custom-accordion-summary button span:nth-child(2) {
   font-weight: 500;
-  font-size: large;
 }
 
 .gallery-wrap {
