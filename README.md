@@ -1,7 +1,7 @@
 # EyecatcherPhotographyUI
 
 ## Getting Started
-To create a new React application using npm and typescript template, run:
+This app was created using CRA:
 ```
 npx create-react-app eyecatcher-photography-ui --use-npm --template typescript
 ```
@@ -29,4 +29,8 @@ npm install @mui/base
 npm install zustand
 npm install --save react-toastify
 npm install react-image-gallery
+npm install @types/react-slick --save 
+npm install @types/slick-carousel --save
+npm install react-slick --save
+npm install slick-carousel --save
 ```
