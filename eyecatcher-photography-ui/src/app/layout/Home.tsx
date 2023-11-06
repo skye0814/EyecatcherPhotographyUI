@@ -9,10 +9,76 @@ import Accordion, { accordionClasses } from '@mui/joy/Accordion';
 import AccordionDetails from '@mui/joy/AccordionDetails';
 import AccordionSummary from '@mui/joy/AccordionSummary';
 
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import 'slick-carousel/slick/slick-theme.css';
+
 
 export default function Home(){
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
     const [expandedAccordion, setExpandedAccordion] = useState(null);
+    const testimonialsData = [
+        {
+          id: 1,
+          name: 'John A',
+          quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          image: 'john.jpg',
+        },
+        {
+            id: 2,
+            name: 'John B',
+            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            image: 'john.jpg',
+          },
+          {
+            id: 3,
+            name: 'John C',
+            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            image: 'john.jpg',
+          },
+          {
+            id: 4,
+            name: 'John Doe',
+            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            image: 'john.jpg',
+          }
+    ];
+
+    const SlickButtonFix = ({ currentSlide, slideCount, children, ...props }: any) => (
+        <span style={{position: 'relative'}} {...props}>{children}</span>
+    );
+
+    const SlickSettings = {
+        dots: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: false,
+        speed: 500,
+        nextArrow: (<SlickButtonFix>
+                        <div className='circle-button'>
+                            <FontAwesomeIcon 
+                                icon='chevron-right' 
+                                style={{
+                                    color:'white',
+                                    fontWeight: 600,
+                                    fontSize: '25px'
+                                }} 
+                            />
+                        </div>
+                    </SlickButtonFix>),
+        prevArrow: (<SlickButtonFix>
+                        <div className='circle-button'>
+                            <FontAwesomeIcon 
+                                icon='chevron-left' 
+                                style={{
+                                    color:'white',
+                                    fontWeight: 600,
+                                    fontSize: '25px'
+                                }} 
+                            />
+                        </div>
+                    </SlickButtonFix>),
+    };
 
     const handleAccordionEnter = (accordionId: any) => {
         setExpandedAccordion(accordionId);
@@ -192,6 +258,7 @@ export default function Home(){
             <div className='blue-section'>
                 <div className='blue-section-container'>
                     <div style={{margin: 'auto'}}>
+                        <FadeInElement>
                         <Typography 
                             className='intro-quote'
                             sx={{
@@ -205,6 +272,8 @@ export default function Home(){
                         >
                             Our Statistics
                         </Typography>
+                        </FadeInElement>
+                        <FadeInElement>
                         <Typography
                             className=''
                             sx={{
@@ -222,7 +291,9 @@ export default function Home(){
                             We have shared thousand of photographs and stories with you, each capturing a unique moment 
                             in time. We look forward to sharing many more memorable moments with you in the future.
                         </Typography>
+                        </FadeInElement>
                     </div>
+                    <FadeInElement>
                     <div style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(2, 50%)',
@@ -246,6 +317,7 @@ export default function Home(){
                             <Typography className='milestone-desc'>Reviews</Typography>
                         </div>
                     </div>
+                    </FadeInElement>
                 </div>
             </div>
 
@@ -284,109 +356,20 @@ export default function Home(){
                     </FadeInElement>
                 </div>
             </div>
+
+            <div className='subcontainer'>
+            <Slider {...SlickSettings}>
+                {testimonialsData.map((testimonial) => (
+                    <div key={testimonial.id} className="testimonial-card">
+                    <img src={testimonial.image} alt={testimonial.name} />
+                    <h3>{testimonial.name}</h3>
+                    <p>{testimonial.quote}</p>
+                    </div>
+                ))}
+            </Slider>
+            </div>
                 
-                
-            {/* <div className='blue-section'>
-                <FadeInElement>
-                    <Typography 
-                        className='intro-quote centered-horizontal'
-                        sx={{
-                            padding: '30px 0px !important',
-                            color: 'white'
-                        }}
-                    >
-                        About Eyecatcher Photography
-                    </Typography>
-                </FadeInElement>
-                <div className='blue-section-container'>
-                    <AspectRatio ratio='1' sx={{ width: 300, margin: 'auto'}}>
-                        <img
-                        src="/images/founder-image.jpg"
-                        loading="lazy"
-                        alt=""
-                        />
-                    </AspectRatio>
-                    <Typography sx={{ 
-                        textAlign: 'justify', 
-                        fontFamily: 'General Sans',
-                        width: '85%',
-                        color: 'white', 
-                        }}
-                        style={{margin: 'auto'}}
-                    >
-                            I am Jes Sta Isabel-Pacios, the founder of Eyecatcher Photography. 
-                            I am thrilled to welcome you to our world of creativity, visual storytelling, 
-                            and the art of capturing moments that last a lifetime.
-                            <br/><br/>
-                            Photography has been my passion for as long as I can remember. 
-                            It's not just about taking pictures; it's about preserving emotions, experiences, and memories. 
-                            Every photograph we create at Eyecatcher is a piece of our heart and soul, 
-                            reflecting the unique beauty and essence of every moment.
-                            <br/><br/>
-                            Through the lens of Eyecatcher, we aim to transform every occasion into a timeless 
-                            work of art. We cherish every opportunity to be a part of your story. 
-                            Our commitment to excellence and the relentless pursuit of creativity is at the heart of everything we do.
-                    </Typography>
-                </div>
-            </div> */}
-            
             <div className='container' style={{marginTop: '50px'}}>
-                {/* <FadeInElement>
-                    <Card
-                        className='founder-message'
-                        variant="soft"
-                        orientation="horizontal"
-                        size='lg'
-                        sx={{
-                            marginBottom: '50px !important',
-                            transition: 'fade 1s ease',
-                            margin: 'auto',
-                            width: '80%',
-                            '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
-                        }}
-                        >
-                        <AspectRatio ratio='1' sx={{ width: 300, margin: 'auto'}}>
-                            <img
-                            src="/images/founder-image.jpg"
-                            loading="lazy"
-                            alt=""
-                            />
-                        </AspectRatio>
-                        <CardContent sx={{alignItems: 'center'}}>
-                            <Typography sx={{
-                                fontWeight: '500', 
-                                fontSize: '18px', 
-                                marginBottom: '7px', 
-                                color: 'var(--blue)'}}
-                            >
-                                Jes Sta Isabel-Pacios
-                            </Typography>
-                            <Typography sx={{ 
-                                textAlign: 'justify', 
-                                fontFamily: 'General Sans',
-                                width: '85%',
-                                color: 'black'
-                                }}
-                            >
-                                    I am Jes Sta Isabel-Pacios, the founder of Eyecatcher Photography. 
-                                    I am thrilled to welcome you to our world of creativity, visual storytelling, 
-                                    and the art of capturing moments that last a lifetime.
-                                    <br/><br/>
-                                    Photography has been my passion for as long as I can remember. 
-                                    It's not just about taking pictures; it's about preserving emotions, experiences, and memories. 
-                                    Every photograph we create at Eyecatcher is a piece of our heart and soul, 
-                                    reflecting the unique beauty and essence of every moment.
-                                    <br/><br/>
-                                    Through the lens of Eyecatcher, we aim to transform every occasion into a timeless 
-                                    work of art. We cherish every opportunity to be a part of your story. 
-                                    Our commitment to excellence and the relentless pursuit of creativity is at the heart of everything we do.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </FadeInElement> */}
-
-
-                
             </div>
             
         </div>
