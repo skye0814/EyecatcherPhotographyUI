@@ -19,29 +19,33 @@ export default function Home(){
     const [expandedAccordion, setExpandedAccordion] = useState(null);
     const testimonialsData = [
         {
-          id: 1,
-          name: 'John A',
-          quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          image: 'john.jpg',
+            name: 'Katie Heng-Funa',
+            quote: `Jes (EyeCatcher Photography) offers an exceptional bang for the buck. The quality of her work is matched by her reasonable pricing, 
+                    making it a win-win for anyone looking for top-notch photography. I wholeheartedly recommend her to anyone in need of a skilled and 
+                    personable photographer who delivers beyond expectations. We are grateful for the memories she has preserved for us and will be 
+                    returning for more sessions in the future.`,
+            image: 'john.jpg',
         },
         {
-            id: 2,
-            name: 'John B',
-            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            name: 'Trixia Nanas Baquir',
+            quote: `Grateful for this team for capturing the moments during our prenup session and wedding day. They really captured the love and how 
+                    beautiful our day it was👏👏👏`,
             image: 'john.jpg',
-          },
-          {
-            id: 3,
-            name: 'John C',
-            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        },
+        {
+            name: 'Mien Mayoralgo',
+            quote: `When it comes to any events, parties, simple gatherings, and lavish gatherings. I will definitely recommend these people. They are keen 
+                    on every detail, communication-wise, and work like magic. What I love about them is they make sure that your event is along with the concept 
+                    and perfection.`,
             image: 'john.jpg',
-          },
-          {
-            id: 4,
-            name: 'John Doe',
-            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        },
+        {
+            name: 'Khaizer Ann Angeles Potian',
+            quote: `100000/10 superb!!! When it comes to any events, They will surely catch your eyes and smiles. They will surely catch those memories we will always cherish. 
+                    From the photographers, videographer, editors and hmu artist. The team was so friendly and really approachable from the moment I messaged them.
+                    The outputs were really amazing!!`,
             image: 'john.jpg',
-          }
+        },
     ];
 
     const SlickButtonFix = ({ currentSlide, slideCount, children, ...props }: any) => (
@@ -359,8 +363,8 @@ export default function Home(){
 
             <div className='subcontainer'>
             <Slider {...SlickSettings}>
-                {testimonialsData.map((testimonial) => (
-                    <div key={testimonial.id} className="testimonial-card">
+                {testimonialsData.map((testimonial, index) => (
+                    <div key={index} className="testimonial-card">
                     <img src={testimonial.image} alt={testimonial.name} />
                     <h3>{testimonial.name}</h3>
                     <p>{testimonial.quote}</p>
