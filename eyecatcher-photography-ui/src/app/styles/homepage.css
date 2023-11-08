@@ -162,6 +162,10 @@
   position: relative;
 }
 
+.slick-slide {
+  padding: 10px;
+}
+
 .custom-accordion-details {
   margin: auto;
   padding: 30px 10px;
