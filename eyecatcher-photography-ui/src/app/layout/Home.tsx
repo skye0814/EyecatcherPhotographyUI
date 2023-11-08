@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AspectRatio, Button, Divider } from '@mui/joy';
+import { AspectRatio, Avatar, AvatarGroup, Box, Button, Card, CardActions, CardContent, Divider, IconButton } from '@mui/joy';
 import '../styles/homepage.css';
 import { Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -364,11 +364,30 @@ export default function Home(){
             <div className='subcontainer'>
             <Slider {...SlickSettings}>
                 {testimonialsData.map((testimonial, index) => (
-                    <div key={index} className="testimonial-card">
-                    <img src={testimonial.image} alt={testimonial.name} />
-                    <h3>{testimonial.name}</h3>
-                    <p>{testimonial.quote}</p>
-                    </div>
+                    <Card
+                        key={index}
+                        variant="outlined"
+                        sx={{
+                            width: 320,
+                            resize: 'horizontal'
+                        }}
+                    >
+                    <Box
+                        sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 2
+                        }}
+                    >
+                        <Avatar src="/static/images/avatar/1.jpg" size="lg" />
+                        <Typography fontWeight={600}>{testimonial.name}</Typography>
+                    </Box>
+                    <CardContent sx={{overflow: 'auto', height: 200}}>
+                        <Typography>
+                            {testimonial.quote}
+                        </Typography>
+                    </CardContent>
+                    </Card>
                 ))}
             </Slider>
             </div>
