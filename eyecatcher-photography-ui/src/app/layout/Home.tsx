@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AspectRatio, Avatar, AvatarGroup, Box, Button, Card, CardActions, CardContent, Divider, IconButton } from '@mui/joy';
 import '../styles/homepage.css';
 import { Typography } from '@mui/material';
@@ -17,71 +17,50 @@ import 'slick-carousel/slick/slick-theme.css';
 export default function Home(){
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
     const [expandedAccordion, setExpandedAccordion] = useState(null);
+    const sliderRef = useRef<any>(null);
     const testimonialsData = [
         {
             name: 'Katie Heng-Funa',
             quote: `Jes (EyeCatcher Photography) offers an exceptional bang for the buck. The quality of her work is matched by her reasonable pricing, 
-                    making it a win-win for anyone looking for top-notch photography. I wholeheartedly recommend her to anyone in need of a skilled and 
-                    personable photographer who delivers beyond expectations. We are grateful for the memories she has preserved for us and will be 
-                    returning for more sessions in the future.`,
-            image: 'john.jpg',
+                    making it a win-win for anyone looking for top-notch photography.`,
+            image: '/images/avatar-reviews/katie.jpg',
         },
         {
             name: 'Trixia Nanas Baquir',
             quote: `Grateful for this team for capturing the moments during our prenup session and wedding day. They really captured the love and how 
                     beautiful our day it was👏👏👏`,
-            image: 'john.jpg',
+            image: '/images/avatar-reviews/trixia.jpg',
         },
         {
             name: 'Mien Mayoralgo',
-            quote: `When it comes to any events, parties, simple gatherings, and lavish gatherings. I will definitely recommend these people. They are keen 
-                    on every detail, communication-wise, and work like magic. What I love about them is they make sure that your event is along with the concept 
-                    and perfection.`,
-            image: 'john.jpg',
+            quote: `I will definitely recommend these people. They are keen on every detail, communication-wise, and work like magic.
+                    What I love about them is they make sure that your event is along with the concept and perfection.`,
+            image: '/images/avatar-reviews/mien.jpg',
         },
         {
             name: 'Khaizer Ann Angeles Potian',
-            quote: `100000/10 superb!!! When it comes to any events, They will surely catch your eyes and smiles. They will surely catch those memories we will always cherish. 
+            quote: `They will surely catch those memories we will always cherish. 
                     From the photographers, videographer, editors and hmu artist. The team was so friendly and really approachable from the moment I messaged them.
                     The outputs were really amazing!!`,
-            image: 'john.jpg',
+            image: '/images/avatar-reviews/khaizer.jpg',
         },
     ];
 
-    const SlickButtonFix = ({ currentSlide, slideCount, children, ...props }: any) => (
-        <span style={{position: 'relative'}} {...props}>{children}</span>
-    );
+    const gotoNext = () => {
+        sliderRef.current?.slickNext();
+    }
+    const gotoPrev = () => {
+        sliderRef.current?.slickPrev();
+    }
 
     const SlickSettings = {
         dots: true,
-        slidesToShow: 3,
+        slidesToShow: isSmallScreen ? 2 : 3,
         slidesToScroll: 1,
         infinite: false,
         speed: 500,
-        nextArrow: (<SlickButtonFix>
-                        <div className='circle-button'>
-                            <FontAwesomeIcon 
-                                icon='chevron-right' 
-                                style={{
-                                    color:'white',
-                                    fontWeight: 600,
-                                    fontSize: '25px'
-                                }} 
-                            />
-                        </div>
-                    </SlickButtonFix>),
-        prevArrow: (<SlickButtonFix>
-                        <div className='circle-button'>
-                            <FontAwesomeIcon 
-                                icon='chevron-left' 
-                                style={{
-                                    color:'white',
-                                    fontWeight: 600,
-                                    fontSize: '25px'
-                                }} 
-                            />
-                        </div>
-                    </SlickButtonFix>),
+        vertical: isSmallScreen ? true : false,
+        verticalSwiping: isSmallScreen ? true : false
     };
 
     const handleAccordionEnter = (accordionId: any) => {
@@ -109,20 +88,27 @@ export default function Home(){
                 <div className='grid-item item1'>
                     <div>
                         <Typography className='intro-quote'>
-                            Photography is the <br/> <strong className='intro-quote colored-font'> art of froz</strong>
+                            Photography is the <br/> 
+                            <strong 
+                                className='intro-quote colored-font' 
+                                style={{color: isSmallScreen ? 'blue' : 'var(--blue)'}}> 
+                                art of froz</strong>
                             <span 
                                 className='intro-quote' 
                                 style={{
                                     textDecoration: 'underline',
                                     textUnderlineOffset: '10px',
                                     textDecorationThickness: '4px',
-                                    color: 'var(--blue)'
+                                    color: isSmallScreen ? 'blue' : 'var(--blue)'
                                 }}
                             >
-                                <strong className='intro-quote colored-font'>en time</strong>
+                                <strong 
+                                    className='intro-quote colored-font' 
+                                    style={{color: isSmallScreen ? 'blue' : 'var(--blue)'}}
+                                >en time</strong>
                             </span>
                         </Typography>
-                        <Typography className='intro-message'>
+                        <Typography className='intro-message' style={{fontWeight: isSmallScreen ? '500' : 'unset'}}>
                             We believe that remarkable photography should be accessible to all
                             whether it's a special event, a family portrait, or a personal photoshoot, 
                             our photography services are customized to meet your unique needs.
@@ -137,7 +123,7 @@ export default function Home(){
                     </div>
                 </div>
                 <div className='grid-item item2'>
-                    <img src='/images/intro-image1.jpg' alt='Jasper and Natasha' className='intro-image1'/>
+                    <img src='/images/intro-image3.jpg' alt='Jasper and Natasha' className='intro-image1'/>
                 </div>
             </div>
 
@@ -361,28 +347,88 @@ export default function Home(){
                 </div>
             </div>
 
-            <div className='subcontainer'>
-            <Slider {...SlickSettings}>
+            <div className='subcontainer' style={{marginTop: '50px'}}>
+                <Typography 
+                    className='intro-quote colored-font'
+                    sx={{
+                        marginBottom: '10px !important'
+                    }}
+                >
+                    What our customers say
+                </Typography>
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(2,50%)'
+                }}>
+                    <Typography
+                        sx={{
+                            display: 'flex',
+                            fontWeight: 500,
+                            width: isSmallScreen ? '100%' : '400px',
+                            padding: isSmallScreen ? '0px 0px 30px 0px' : '0px 0px 30px 0px',
+                            margin: 'auto 0 auto 0'
+                        }}
+                    >
+                        Explore heartfelt testimonials from our satisfied customers, 
+                        as they share their experiences and emotions captured through our lens
+                    </Typography>
+                    <div style={{
+                        display: 'flex',
+                        margin: !isSmallScreen ? '0 0 0 auto' : 'auto 0 auto auto',
+                        gap: '10px'
+                    }}>
+                        <div className='circle-button' onClick={() => gotoPrev()}>
+                            <FontAwesomeIcon 
+                                icon='chevron-left' 
+                                style={{
+                                    color:'white',
+                                    fontWeight: 600,
+                                    fontSize: '25px'
+                                }} 
+                            />
+                        </div>
+                        <div className='circle-button' onClick={() => gotoNext()}>
+                            <FontAwesomeIcon 
+                                icon='chevron-right' 
+                                style={{
+                                    color:'white',
+                                    fontWeight: 600,
+                                    fontSize: '25px',
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
+            <Slider {...SlickSettings} ref={sliderRef}>
+                
                 {testimonialsData.map((testimonial, index) => (
                     <Card
                         key={index}
                         variant="outlined"
                         sx={{
                             width: 320,
-                            resize: 'horizontal'
+                            resize: 'horizontal',
+                            borderRadius: '17px',
+                            boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px'
                         }}
                     >
                     <Box
                         sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: 2
+                        gap: 2,
                         }}
                     >
-                        <Avatar src="/static/images/avatar/1.jpg" size="lg" />
+                        <Avatar src={testimonial.image} size="lg" />
                         <Typography fontWeight={600}>{testimonial.name}</Typography>
                     </Box>
-                    <CardContent sx={{overflow: 'auto', height: 200}}>
+                    <CardContent sx={{
+                        overflow: 'auto', 
+                        height: 150, 
+                        marginTop: '15px',
+                        textJustify: 'inter-word',
+                        textAlign: 'justify'
+                    }}>
                         <Typography>
                             {testimonial.quote}
                         </Typography>
