@@ -195,7 +195,6 @@ export default function Home(){
                         },
                     }}
                 >
-                    <FadeInElement>
                     <Accordion onMouseEnter={() => handleAccordionEnter(1)}
                                 onMouseLeave={handleAccordionLeave} expanded={expandedAccordion === 1}>
                         <AccordionSummary className='custom-accordion-summary'><div>01</div><span>Birthday Services</span></AccordionSummary>
@@ -206,8 +205,6 @@ export default function Home(){
                         we're here to make your birthday celebration truly shine.
                         </AccordionDetails>
                     </Accordion>
-                    </FadeInElement>
-                    <FadeInElement>
                     <Accordion  onMouseEnter={() => handleAccordionEnter(2)}
                                 onMouseLeave={handleAccordionLeave} expanded={expandedAccordion === 2}>
                         <AccordionSummary className='custom-accordion-summary'><div>02</div><span>Christening Services</span></AccordionSummary>
@@ -217,8 +214,6 @@ export default function Home(){
                         We pride ourselves on creating timeless and heartwarming photos that you'll cherish for generations to come.
                         </AccordionDetails>
                     </Accordion>
-                    </FadeInElement>
-                    <FadeInElement>
                     <Accordion onMouseEnter={() => handleAccordionEnter(3)}
                                 onMouseLeave={handleAccordionLeave} expanded={expandedAccordion === 3}>
                         <AccordionSummary className='custom-accordion-summary'><div>03</div><span>Wedding Services</span></AccordionSummary>
@@ -228,8 +223,6 @@ export default function Home(){
                         stunning, creative, and storytelling images that will tell your unique love story.
                         </AccordionDetails>
                     </Accordion>
-                    </FadeInElement>
-                    <FadeInElement>
                     <Accordion onMouseEnter={() => handleAccordionEnter(4)}
                                 onMouseLeave={handleAccordionLeave} expanded={expandedAccordion === 4}>
                         <AccordionSummary className='custom-accordion-summary'><div>04</div><span>Other Services</span></AccordionSummary>
@@ -239,7 +232,6 @@ export default function Home(){
                         photographers are ready to provide you with exceptional quality and artistic expertise.
                         </AccordionDetails>
                     </Accordion>
-                    </FadeInElement>
                 </AccordionGroup>
             </div>
 
@@ -348,6 +340,7 @@ export default function Home(){
             </div>
 
             <div className='subcontainer' style={{marginTop: '50px'}}>
+                <FadeInElement>
                 <Typography 
                     className='intro-quote colored-font'
                     sx={{
@@ -356,6 +349,8 @@ export default function Home(){
                 >
                     What our customers say
                 </Typography>
+                </FadeInElement>
+                <FadeInElement>
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(2,50%)'
@@ -399,43 +394,46 @@ export default function Home(){
                         </div>
                     </div>
                 </div>
-            <Slider {...SlickSettings} ref={sliderRef}>
-                
-                {testimonialsData.map((testimonial, index) => (
-                    <Card
-                        key={index}
-                        variant="outlined"
-                        sx={{
-                            width: 320,
-                            resize: 'horizontal',
-                            borderRadius: '17px',
-                            boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px'
-                        }}
-                    >
-                    <Box
-                        sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 2,
-                        }}
-                    >
-                        <Avatar src={testimonial.image} size="lg" />
-                        <Typography fontWeight={600}>{testimonial.name}</Typography>
-                    </Box>
-                    <CardContent sx={{
-                        overflow: 'auto', 
-                        height: 150, 
-                        marginTop: '15px',
-                        textJustify: 'inter-word',
-                        textAlign: 'justify'
-                    }}>
-                        <Typography>
-                            {testimonial.quote}
-                        </Typography>
-                    </CardContent>
-                    </Card>
-                ))}
-            </Slider>
+                </FadeInElement>
+                <FadeInElement>
+                <Slider {...SlickSettings} ref={sliderRef}>
+                    
+                    {testimonialsData.map((testimonial, index) => (
+                        <Card
+                            key={index}
+                            variant="outlined"
+                            sx={{
+                                width: 320,
+                                resize: 'horizontal',
+                                borderRadius: '17px',
+                                boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px'
+                            }}
+                        >
+                        <Box
+                            sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 2,
+                            }}
+                        >
+                            <Avatar src={testimonial.image} size="lg" />
+                            <Typography fontWeight={600}>{testimonial.name}</Typography>
+                        </Box>
+                        <CardContent sx={{
+                            overflow: 'auto', 
+                            height: 150, 
+                            marginTop: '15px',
+                            textJustify: 'inter-word',
+                            textAlign: 'justify'
+                        }}>
+                            <Typography>
+                                {testimonial.quote}
+                            </Typography>
+                        </CardContent>
+                        </Card>
+                    ))}
+                </Slider>
+                </FadeInElement>
             </div>
                 
             <div className='container' style={{marginTop: '50px'}}>
