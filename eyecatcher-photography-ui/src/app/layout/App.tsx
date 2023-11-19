@@ -17,6 +17,7 @@ import { CssVarsProvider, StyledEngineProvider } from '@mui/joy';
 import createTheme from '@mui/material/styles/createTheme';
 import RequireAuth from '../common/RequireAuth';
 import PageNotFound from './PageNotFound';
+import FooterBar from './FooterBar';
 
 function App() {
   const theme = createTheme();
@@ -26,7 +27,7 @@ function App() {
     <CssVarsProvider>
       <div className="App">
         <NavBar />
-          <div>
+          <div style={{minHeight: '100vh'}}>
               <Routes>
                 <Route path="/*" element={<PageNotFound />} />
                 <Route path='/login' element={<LoginPage />} />
@@ -47,7 +48,7 @@ function App() {
                   } />
               </Routes>
           </div>
-        {/* <FooterBar /> */}
+        <FooterBar />
       </div>
     </CssVarsProvider>
     </StyledEngineProvider>
