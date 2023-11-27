@@ -9,6 +9,7 @@ import { Product } from "../../models/Product";
 import ProductCards from "./ProductCards";
 
 export default function Products(){
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 990);
     const [hideNextPage, setHideNextPage] = useState(false);
     const [hidePrevPage, setHidePrevPage] = useState(true);
     const [products, setProducts] = useState<PagedResponse<Product[]>>();
@@ -16,7 +17,7 @@ export default function Products(){
     const [searchParams]: any = useSearchParams();
     const [queryParams, setQueryParams] = useState<PagedRequest>({
         pageNumber: 1,
-        pageSize: 4,
+        pageSize: isSmallScreen ? 4 : 8,
         sortBy: 'productName',
         productCategoryId: !isNaN(parseInt(searchParams.get('productCategoryId'))) ? searchParams.get('productCategoryId') : null
     });
@@ -42,6 +43,7 @@ export default function Products(){
     const nextPage = (page: number) => {
         let updatedQueryParams: PagedRequest = {...queryParams};
         updatedQueryParams.pageNumber = page;
+        updatedQueryParams.pageSize = isSmallScreen ? 4 : 8
 
         if(products){
             if(updatedQueryParams.pageNumber > products.totalPages){
@@ -58,6 +60,7 @@ export default function Products(){
     const prevPage = (page: number) => {
         let updatedQueryParams: PagedRequest = {...queryParams};
         updatedQueryParams.pageNumber = page;
+        updatedQueryParams.pageSize = isSmallScreen ? 4 : 8
         
         if(products){
             if(updatedQueryParams.pageNumber < 1){
@@ -71,7 +74,7 @@ export default function Products(){
             }
         }
     }
-    
+
     useEffect(() => {
         // Change title
         document.title = "Products | " + document.title;
@@ -79,6 +82,10 @@ export default function Products(){
         // Fetch products on render
         fetchProduct(queryParams);
     }, []);
+
+    useEffect(() => {
+        nextPage(1);
+    }, [isSmallScreen]);
 
     useEffect(() => {
         console.log(products);
@@ -98,7 +105,17 @@ export default function Products(){
                 setHidePrevPage(false);
             }
         }
-    }, [products])
+    }, [products]);
+
+    useEffect(() => {
+        const handleResize = () => {
+          setIsSmallScreen(window.innerWidth <= 990);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+    },[]);
 
     return (
         <div className="container">
@@ -125,7 +142,7 @@ export default function Products(){
             <div>{products?.pageNumber}</div>
             <div>{products?.pageSize}</div>
 
-            <Grid columns={4} centered stretched>
+            <Grid columns={isSmallScreen ? 1 : 4} centered stretched>
             {products?.data.map((product) => {
                 return(
                     <Grid.Column key={product.productID}>
