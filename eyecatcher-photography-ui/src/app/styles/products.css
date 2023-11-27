@@ -1,3 +1,15 @@
 .justify-center {
     justify-content: unset;
 }
+
+.page-details {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.product-grid {
+    margin-top: 50px !important;
+}

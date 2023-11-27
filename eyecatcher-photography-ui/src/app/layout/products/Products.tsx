@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import '../../styles/products.css';
-import { Breadcrumb, Button, Grid } from "semantic-ui-react";
+import { Breadcrumb, Grid } from "semantic-ui-react";
 import { useSearchParams } from "react-router-dom";
 import { PagedRequest } from "../../models/PagedRequest";
 import { get } from "../../services/api";
 import { PagedResponse } from "../../models/PagedResponse";
 import { Product } from "../../models/Product";
 import ProductCards from "./ProductCards";
+import { Button } from "@mui/joy";
+import TitlePresentation from "../../common/TitlePresentation";
 
 export default function Products(){
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 990);
@@ -38,6 +40,10 @@ export default function Products(){
         .catch((err)=>{
             setError(err);
         })
+    }
+
+    const scrollToTop = () => {
+        window.scrollTo(0, 0);
     }
 
     const nextPage = (page: number) => {
@@ -120,29 +126,9 @@ export default function Products(){
     return (
         <div className="container">
             <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} />
-            <button 
-                id="next-page-btn" 
-                onClick={()=>{nextPage(queryParams.pageNumber + 1);}} 
-                disabled={hideNextPage}
-                style={{visibility: hideNextPage ? 'hidden': 'visible'}}
-            >
-                Page up
-            </button>
-            <button 
-                id="prev-page-btn" 
-                onClick={()=>{prevPage(queryParams.pageNumber - 1); console.log(products)}} 
-                disabled={hidePrevPage}
-                style={{visibility: hidePrevPage ? 'hidden': 'visible'}}
-            >
-                Page down
-            </button>
-            
+            <TitlePresentation titleName=""></TitlePresentation>
 
-            <p>{queryParams.pageNumber}</p>
-            <div>{products?.pageNumber}</div>
-            <div>{products?.pageSize}</div>
-
-            <Grid columns={isSmallScreen ? 1 : 4} centered stretched>
+            <Grid className="product-grid" columns={isSmallScreen ? 1 : 4} centered stretched>
             {products?.data.map((product) => {
                 return(
                     <Grid.Column key={product.productID}>
@@ -151,8 +137,24 @@ export default function Products(){
                 )
             })}
             </Grid>
-                
-            
+
+            <div className="page-details">
+                <Button className="primary-btn"
+                    disabled={hidePrevPage}
+                    style={{visibility: hidePrevPage ? 'hidden': 'visible'}}
+                    onClick={()=>{prevPage(queryParams.pageNumber - 1); scrollToTop()}}
+                >
+                    Prev
+                </Button>
+                <span style={{fontWeight: '500'}}>Page {queryParams.pageNumber} of {products?.totalPages}</span>
+                <Button className="primary-btn"
+                    disabled={hideNextPage}
+                    style={{visibility: hideNextPage ? 'hidden': 'visible'}}
+                    onClick={()=>{nextPage(queryParams.pageNumber + 1); scrollToTop()}} 
+                >
+                    Next
+                </Button>
+            </div>
         </div>
         
     );
