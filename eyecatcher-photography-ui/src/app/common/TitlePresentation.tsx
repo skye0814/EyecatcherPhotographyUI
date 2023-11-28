@@ -2,7 +2,7 @@ import React from "react";
 import '../styles/titlepresentation.css';
 
 interface Props {
-    titleName: string
+    titleName: string | undefined
 }
 
 export default function TitlePresentation({titleName}: Props){

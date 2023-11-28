@@ -9,12 +9,14 @@ import { Product } from "../../models/Product";
 import ProductCards from "./ProductCards";
 import { Button } from "@mui/joy";
 import TitlePresentation from "../../common/TitlePresentation";
+import { ProductCategory } from "../../models/ProductCategory";
 
 export default function Products(){
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 990);
     const [hideNextPage, setHideNextPage] = useState(false);
     const [hidePrevPage, setHidePrevPage] = useState(true);
     const [products, setProducts] = useState<PagedResponse<Product[]>>();
+    const [productCategory, setProductCategory] = useState<ProductCategory>();
     const [error, setError] = useState(null);
     const [searchParams]: any = useSearchParams();
     const [queryParams, setQueryParams] = useState<PagedRequest>({
@@ -28,6 +30,16 @@ export default function Products(){
         { key: 'Services', content: 'Services', link: false, href:'/services' },
         { key: 'Products', content: 'Products', active: true, href:`/services/products?productCategoryId=${queryParams.productCategoryId}` },
     ];
+
+    const fetchProductCategory = () => {
+        get(`/api/ProductCategory/GetProductCategoryById/${queryParams.productCategoryId}`)
+        .then(response => {
+            setProductCategory(response);
+        })
+        .catch(err => {
+            setError(err);
+        })
+    }
 
     const fetchProduct = (queryParams: PagedRequest) => {
         get(`/api/Product/Products?pageNumber=${queryParams.pageNumber}
@@ -82,6 +94,9 @@ export default function Products(){
     }
 
     useEffect(() => {
+        // Get ProductCategory
+        fetchProductCategory();
+
         // Change title
         document.title = "Products | " + document.title;
 
@@ -126,7 +141,7 @@ export default function Products(){
     return (
         <div className="container">
             <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} />
-            <TitlePresentation titleName=""></TitlePresentation>
+            <TitlePresentation titleName={productCategory?.categoryName}></TitlePresentation>
 
             <Grid className="product-grid" columns={isSmallScreen ? 1 : 4} centered stretched>
             {products?.data.map((product) => {
