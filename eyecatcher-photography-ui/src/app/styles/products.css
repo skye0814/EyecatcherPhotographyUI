@@ -13,3 +13,15 @@
 .product-grid {
     margin-top: 50px !important;
 }
+
+.custom-breadcrumb {
+    background-color: #e9f1f3;
+    display: inline-block;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.bcumb-icon {
+    font-size: 12px;
+    padding-right: 7px;
+}

@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import '../../styles/products.css';
-import { Breadcrumb, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { useSearchParams } from "react-router-dom";
 import { PagedRequest } from "../../models/PagedRequest";
 import { get } from "../../services/api";
 import { PagedResponse } from "../../models/PagedResponse";
 import { Product } from "../../models/Product";
 import ProductCards from "./ProductCards";
-import { Button } from "@mui/joy";
+import { Breadcrumbs, Button, Link, Typography } from "@mui/joy";
 import TitlePresentation from "../../common/TitlePresentation";
 import { ProductCategory } from "../../models/ProductCategory";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Products(){
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 990);
@@ -26,9 +27,9 @@ export default function Products(){
         productCategoryId: !isNaN(parseInt(searchParams.get('productCategoryId'))) ? searchParams.get('productCategoryId') : null
     });
     const sections = [
-        { key: 'Home', content: 'Home', link: false, href:'../' },
-        { key: 'Services', content: 'Services', link: false, href:'/services' },
-        { key: 'Products', content: 'Products', active: true, href:`/services/products?productCategoryId=${queryParams.productCategoryId}` },
+        { key: 'Home', icon: <FontAwesomeIcon className="bcumb-icon" icon='home'/>, link: false, href:'../' },
+        { key: 'Services', icon: <FontAwesomeIcon className="bcumb-icon" icon='camera'/>, link: false, href:'/services' },
+        { key: 'Products', icon: <FontAwesomeIcon className="bcumb-icon" icon='images'/>, link: true, href:`/services/products?productCategoryId=${queryParams.productCategoryId}` },
     ];
 
     const fetchProductCategory = () => {
@@ -140,7 +141,26 @@ export default function Products(){
 
     return (
         <div className="container">
-            <Breadcrumb icon='right angle' sections={sections} style={{margin: '10px 0 18px 0'}} />
+            <Breadcrumbs className='custom-breadcrumb' 
+                separator={<FontAwesomeIcon icon='chevron-right' 
+                style={{fontSize: '10px'}}/>} 
+                aria-label="breadcrumbs"
+                sx={{
+                    "--Breadcrumbs-gap": "8px"
+                }}
+            >
+                {sections.map((item) => (
+                    <Link key={item.key} 
+                        color="neutral" 
+                        textColor={item.link ? 'var(--blue)' : 'unset'}
+                        href={item.href} 
+                        fontWeight={item.link ? '600' : 'unset'}
+                    >
+                        {item.icon}
+                        {item.key}
+                    </Link>
+                ))}
+            </Breadcrumbs>
             <TitlePresentation titleName={productCategory?.categoryName}></TitlePresentation>
 
             <Grid className="product-grid" columns={isSmallScreen ? 1 : 4} centered stretched>

@@ -60,8 +60,8 @@ export default function Services(){
     return(
     <div className='container' id='container'>
         
-
-        <TitlePresentation titleName="Services" />
+        <div style={{marginTop: '120px'}}></div>
+        <TitlePresentation titleName="Services"/>
         {isLoading 
         ? 
             <Grid columns={4} id="variable-skeleton">
