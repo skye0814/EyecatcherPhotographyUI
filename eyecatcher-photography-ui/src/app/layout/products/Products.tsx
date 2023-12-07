@@ -11,6 +11,8 @@ import { Breadcrumbs, Button, Link, Typography } from "@mui/joy";
 import TitlePresentation from "../../common/TitlePresentation";
 import { ProductCategory } from "../../models/ProductCategory";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ToastContainer, toast } from "react-toastify";
+import useCartStore from "../../store/cartStore";
 
 export default function Products(){
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 990);
@@ -19,6 +21,7 @@ export default function Products(){
     const [products, setProducts] = useState<PagedResponse<Product[]>>();
     const [productCategory, setProductCategory] = useState<ProductCategory>();
     const [error, setError] = useState(null);
+    const cartItems = useCartStore((state) => state.cartItems);
     const [searchParams]: any = useSearchParams();
     const [queryParams, setQueryParams] = useState<PagedRequest>({
         pageNumber: 1,
@@ -93,6 +96,10 @@ export default function Products(){
             }
         }
     }
+
+    useEffect(() => {
+        console.log(cartItems);
+    }, [cartItems]);
 
     useEffect(() => {
         // Get ProductCategory
@@ -190,6 +197,12 @@ export default function Products(){
                     Next
                 </Button>
             </div>
+
+            <ToastContainer 
+                autoClose={5000}
+                closeOnClick
+                limit={1}
+            />
         </div>
         
     );
