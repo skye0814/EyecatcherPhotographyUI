@@ -34,3 +34,8 @@ npm install @types/slick-carousel --save
 npm install react-slick --save
 npm install slick-carousel --save
 ```
+
+## Authors
+
+- [@skye0814](https://github.com/skye0814)
+- [@JanTangonan](https://github.com/JanTangonan)
